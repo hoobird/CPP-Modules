@@ -2,9 +2,9 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror
 VFLAG = -std=c++98
 
-SRC = megaphone.cpp
+SRC = PhoneBook.cpp Contact.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
-NAME = megaphone
+NAME = awesomePhonebook
 
 all: $(NAME)
 

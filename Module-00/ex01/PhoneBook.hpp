@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hoobird <hoobird@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hulim <hulim@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:51:55 by hoobird           #+#    #+#             */
-/*   Updated: 2024/08/25 17:14:02 by hoobird          ###   ########.fr       */
+/*   Updated: 2024/08/26 21:56:22 by hulim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ class PhoneBook
   public:
     PhoneBook(void);
     ~PhoneBook(void);
-    void add();
+    void addContact();
     void search();
-private:
+  private:
     Contact contacts[8];
-    int size;  
+    int size;
+    void reverseRotate();
+    
 };
 
 #endif
