@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulim <hulim@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: hulim <hulim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:55:17 by hoobird           #+#    #+#             */
-/*   Updated: 2024/08/26 21:55:49 by hulim            ###   ########.fr       */
+/*   Updated: 2024/08/28 22:57:43 by hulim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ Contact::Contact(void)
 
 Contact::~Contact(void)
 {
-	std::cout << "Contact destructed" << std::endl;
 	return;
 }
 

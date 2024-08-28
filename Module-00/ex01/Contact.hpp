@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulim <hulim@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: hulim <hulim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:55:12 by hoobird           #+#    #+#             */
-/*   Updated: 2024/08/26 21:55:10 by hulim            ###   ########.fr       */
+/*   Updated: 2024/08/28 22:17:38 by hulim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-#include <iostream>
-#include <string>
-
+# include "main.hpp"
 
 class Contact
 {
