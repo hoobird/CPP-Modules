@@ -1,4 +1,4 @@
 *.out
 *.o
-./Module-00/ex00/megaphone
-./Module-00/ex01/awesomePhonebook
+Module-00/ex00/megaphone
+Module-00/ex01/awesomePhonebook
