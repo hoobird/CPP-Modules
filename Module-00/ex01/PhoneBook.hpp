@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulim <hulim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hoobird <hoobird@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:51:55 by hoobird           #+#    #+#             */
-/*   Updated: 2024/08/28 23:06:54 by hulim            ###   ########.fr       */
+/*   Updated: 2024/09/01 14:39:59 by hoobird          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ class PhoneBook
 	~PhoneBook(void);
 	void addOption();
 	void searchOption();
-	Contact contacts[8];
-	int size;
 
   private:
+	Contact contacts[8];
+	int size;
 	void printTable();
 	void reverseRotate();
 	void truncate10(std::string str);

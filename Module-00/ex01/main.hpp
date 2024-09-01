@@ -14,5 +14,6 @@
 #include "PhoneBook.hpp"
 
 std::string	myGetline(void);
+std::string ft_trim(std::string str);
 
 #endif

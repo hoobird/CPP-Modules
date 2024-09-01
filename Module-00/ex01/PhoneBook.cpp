@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hulim <hulim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hoobird <hoobird@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:55:25 by hoobird           #+#    #+#             */
-/*   Updated: 2024/08/28 23:25:10 by hulim            ###   ########.fr       */
+/*   Updated: 2024/09/01 14:43:17 by hoobird          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,11 @@ PhoneBook::~PhoneBook(void)
 	// std::cout << "PhoneBook destructed" << std::endl;
 }
 
-std::string ft_trim(std::string str)
-{
-	std::string::size_type start = str.find_first_not_of(" \t");
-	std::string::size_type end = str.find_last_not_of(" \t");
-	if (start == std::string::npos)
-	{
-		return ("");
-	}
-	return (str.substr(start, end - start + 1));
-}
-
 void PhoneBook::addOption()
 {
 	std::string info[5];
 	std::cout << "Enter first name: ";
 	info[0] = myGetline();
-	std::cout << "name :" << info[0] << std::endl;
 	std::cout << "Enter last name: ";
 	info[1] = myGetline();
 	std::cout << "Enter nickname: ";
@@ -82,16 +70,19 @@ void PhoneBook::searchOption()
 	int i;
 	i = 0;
 
+	if (size == 0)
+	{
+		std::cout << "PhoneBook is empty" << std::endl;
+		std::cout << "Search failed, returning to main menu" << std::endl;
+		return ;
+	}
 	printTable();
 	std::cout << "Enter index of contact: ";
 	std::cin >> i;
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	if (i < 1 || i > size)
 	{
-		if (std::cin.fail() || std::cin.eof())
-		{
-			std::cin.clear();
-			std::cin.ignore(10000, '\n');
-		}
 		std::cout << "Input is not within the range" << std::endl;
 		std::cout << "Search failed, returning to main menu" << std::endl;
 		return ;
