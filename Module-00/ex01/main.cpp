@@ -6,7 +6,7 @@
 /*   By: hoobird <hoobird@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:55:00 by hoobird           #+#    #+#             */
-/*   Updated: 2024/09/01 14:43:29 by hoobird          ###   ########.fr       */
+/*   Updated: 2024/09/01 14:45:36 by hoobird          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	main(void)
 		std::cin.clear();
 		std::cout << "\nPlease enter one of the following options:" << std::endl;
 		std::cout << "< ADD > | < SEARCH > | < EXIT >" << std::endl;
-		input = myGetline();
+		input =ft_trim(myGetline());
 		if (input.compare("EXIT") == 0 || input.empty())
 			break;
 		else if (input.compare("ADD") == 0)
