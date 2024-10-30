@@ -2,3 +2,5 @@
 *.o
 Module-00/ex00/megaphone
 Module-00/ex01/awesomePhonebook
+.vscode/
+*.d
