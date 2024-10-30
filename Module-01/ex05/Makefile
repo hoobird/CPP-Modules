@@ -2,16 +2,12 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -MMD
 VFLAG = -std=c++98
 
-SRC = main.cpp
+SRC = main.cpp Harl.cpp
 OBJ = $(SRC:.cpp=.o)
 DEP = $(OBJ:.o=.d)
-NAME = sedisforlosers
+NAME = harl
 
 all: $(NAME)
-
-learn: learn.o
-	$(CC) $(CFLAGS) $(VFLAG) learn.o -o learn
-	rm -f learn.o learn.d
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(VFLAG) $(OBJ) -o $(NAME)
