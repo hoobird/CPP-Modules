@@ -13,7 +13,18 @@ Harl::~Harl()
 
 void Harl::complain(std::string level)
 {
-    
+    std::string levelArr[5] = {"DEBUG", "INFO", "WARNING", "ERROR", "OTHERS"};
+    void (Harl::*choiceOfComplain[5])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error, &Harl::others};
+
+    for (int i = 0; i < 5; i++)
+    {
+        if (level == levelArr[i] || i == 4)
+        {
+            (this->*choiceOfComplain[i])();
+            return;
+        }
+    }
+
 }
 
 void Harl::debug(void)
@@ -39,4 +50,10 @@ void Harl::error(void)
 {
     std::cout << "[ERROR]" << std::endl;
     std::cout << "This is unacceptable! I want to speak to the manager." << std::endl;
+}
+
+void Harl::others(void)
+{
+    std::cout << "[OTHERS]" << std::endl;
+    std::cout << "Error: No such level type." << std::endl;
 }
