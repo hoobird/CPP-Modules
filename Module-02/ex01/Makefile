@@ -2,10 +2,10 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -MMD
 VFLAG = -std=c++98
 
-SRC = main.cpp Harl.cpp
+SRC = main.cpp Fixed.cpp
 OBJ = $(SRC:.cpp=.o)
 DEP = $(OBJ:.o=.d)
-NAME = harl
+NAME = fixedpt
 
 all: $(NAME)
 
