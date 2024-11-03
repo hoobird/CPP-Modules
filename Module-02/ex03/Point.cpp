@@ -1,12 +1,12 @@
-#include "Point.h"
+#include "Point.hpp"
 
 Point::Point()
 {
-    this->x = 0;
-    this->y = 0;
+    this->x = Fixed(0);
+    this->y = Fixed(0);
 }
 
-Point::Point(const float x, const float y)
+Point::Point(float x, float y)
 {
     this->x = Fixed(x);
     this->y = Fixed(y);
@@ -43,7 +43,18 @@ Fixed Point::getY() const
     return this->y;
 }
 
-Fixed Point::crossProduct(Point const &a, Point const &b, Point const &P) const
+Fixed Point::crossProduct(Point const &A, Point const &B, Point const &P) const // AB X AP
 {
-    
+    float ABx = B.getX().toFloat() - A.getX().toFloat();
+    float ABy = B.getY().toFloat() - A.getY().toFloat();
+    float APx = P.getX().toFloat() - A.getX().toFloat();
+    float APy = P.getY().toFloat() - A.getY().toFloat();
+
+    return Fixed(ABx * APy - ABy * APx);
+}
+
+std::ostream& operator<<(std::ostream &os, const Point &point)
+{
+    os << "X: " << point.getX() << ", Y: " << point.getY();
+    return os;
 }

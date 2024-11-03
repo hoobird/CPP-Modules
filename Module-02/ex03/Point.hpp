@@ -6,12 +6,12 @@
 class Point
 {
     private:
-        Fixed const x;
-        Fixed const y;
+        Fixed x;
+        Fixed y;
 
     public:
         Point();
-        Point(const float x, const float y);
+        Point(float x, float y);
         Point(const Point &other);
         Point &operator=(const Point &other);
         ~Point();
@@ -19,6 +19,8 @@ class Point
         Fixed getY() const;
 
         Fixed   crossProduct(Point const &A, Point const &B, Point const &P) const;  // AB X AP
-}
+};
+
+std::ostream& operator<<(std::ostream &os, const Point &point);
 
 #endif
