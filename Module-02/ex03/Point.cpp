@@ -43,12 +43,12 @@ Fixed Point::getY() const
     return this->y;
 }
 
-Fixed Point::crossProduct(Point const &A, Point const &B, Point const &P) const // AB X AP
+Fixed Point::crossProduct(Point const &B, Point const &P) const // AB X AP
 {
-    float ABx = B.getX().toFloat() - A.getX().toFloat();
-    float ABy = B.getY().toFloat() - A.getY().toFloat();
-    float APx = P.getX().toFloat() - A.getX().toFloat();
-    float APy = P.getY().toFloat() - A.getY().toFloat();
+    float ABx = B.getX().toFloat() - this->getX().toFloat();
+    float ABy = B.getY().toFloat() - this->getY().toFloat();
+    float APx = P.getX().toFloat() - this->getX().toFloat();
+    float APy = P.getY().toFloat() - this->getY().toFloat();
 
     return Fixed(ABx * APy - ABy * APx);
 }

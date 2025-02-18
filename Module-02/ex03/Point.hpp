@@ -18,7 +18,7 @@ class Point
         Fixed getX() const;
         Fixed getY() const;
 
-        Fixed   crossProduct(Point const &A, Point const &B, Point const &P) const;  // AB X AP
+        Fixed   crossProduct(Point const &B, Point const &P) const;  // AB X AP
 };
 
 std::ostream& operator<<(std::ostream &os, const Point &point);
