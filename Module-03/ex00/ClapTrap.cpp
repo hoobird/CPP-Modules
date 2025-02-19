@@ -2,20 +2,20 @@
 
 ClapTrap::ClapTrap()
 {
-    std::cout << "ClapTrap is constructed with default settings" << std::endl;
     this->name = "Default";
     this->hitPoints = 10;
     this->energyPoints = 10;
     this->attackDamage = 0;
+    std::cout << "ClapTrap is constructed with default settings" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name)
 {
-    std::cout << "ClapTrap is constructed" << std::endl;
     this->name = name;
     this->hitPoints = 10;
     this->energyPoints = 10;
     this->attackDamage = 0;
+    displayStatus("is constructed");
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other):
@@ -24,19 +24,18 @@ ClapTrap::ClapTrap(const ClapTrap &other):
     energyPoints(other.energyPoints), 
     attackDamage(other.attackDamage)
 {
-    std::cout << "ClapTrap copy constructor is called" << std::endl;
+    displayStatus("is copy constructed");
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
-    std::cout << "ClapTrap assignment operator is called" << std::endl;
-    if (this != &other)
-    {
+    if (this != &other) {
         this->name = other.name;
         this->hitPoints = other.hitPoints;
         this->energyPoints = other.energyPoints;
         this->attackDamage = other.attackDamage;
     }
+    displayStatus("is copy assigned");
     return *this;
 }
 
@@ -48,43 +47,55 @@ ClapTrap::~ClapTrap()
 void ClapTrap::attack(const std::string &target)
 {
     if (this->hitPoints == 0) {
-        std::cout << "ClapTrap " << this->name << " cannot attack as it is already destroyed! (0 HP)" << std::endl;
+        displayStatus("cannot attack as it is already destroyed!");
         return;
     }
     if (this->energyPoints == 0) {
-        std::cout << "ClapTrap " << this->name << " has run out of energy points! :(" << std::endl;
+        displayStatus("has run out of energy points!");
         return;
     }
     this->energyPoints -= 1;
-    std::cout << "ClapTrap " << this->name << " attacks " << target << " for " << this->attackDamage << " damage!" << std::endl;
+    std::cout << "ClapTrap " << this->name << " attacks " << target << " for " 
+              << this->attackDamage << " damage!";
+    displayStatus("");
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
     if (this->hitPoints == 0) {
-        std::cout << "ClapTrap " << this->name << " cannot take more damage as it is already destroyed! (0 HP)" << std::endl;
+        displayStatus("cannot take more damage as it is already destroyed!");
         return;
     }
     if (amount >= this->hitPoints) {
-        std::cout << "ClapTrap " << this->name << " takes " << amount << " damage and has been destroyed! (0 HP remaining)" << std::endl;
         this->hitPoints = 0;
+        displayStatus("has been destroyed!");
         return;
     }
     this->hitPoints -= amount;
-    std::cout << "ClapTrap " << this->name << " takes " << amount << " damage! (" << this->hitPoints << " HP remaining)" << std::endl;
+    std::cout << "ClapTrap " << this->name << " takes " << amount << " damage!";
+    displayStatus("");
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
     if (this->energyPoints == 0) {
-        std::cout << "ClapTrap " << this->name << " cannot be repaired due to lack of energy!" << std::endl;
+        displayStatus("cannot be repaired due to lack of energy!");
         return;
     }
     if (this->hitPoints == 0) {
-        std::cout << "ClapTrap " << this->name << " cannot be repaired as it is already destroyed!" << std::endl;
+        displayStatus("cannot be repaired as it is already destroyed!");
         return;
     }
     this->energyPoints -= 1;
     this->hitPoints += amount;
-    std::cout << "ClapTrap " << this->name << " healed up by " << amount << " HP! (" << this->hitPoints << " HP now)" << std::endl;
+    std::cout << "ClapTrap " << this->name << " healed up by " << amount << " HP!";
+    displayStatus("");
+}
+
+// Display the status of ClapTrap HP and EP
+void ClapTrap::displayStatus(const std::string& action) const
+{
+    if (!action.empty())
+       std::cout << "ClapTrap " << this->name << " ";
+    std::cout << action << " [HP: " << this->hitPoints << ", EP: " << this->energyPoints << "]" << std::endl;
 }

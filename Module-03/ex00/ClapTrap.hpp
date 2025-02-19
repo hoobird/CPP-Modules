@@ -21,6 +21,9 @@ class   ClapTrap
 		unsigned int	hitPoints;
 		unsigned int	energyPoints;
 		unsigned int	attackDamage;
+
+	private:
+		void displayStatus(const std::string& action) const;
 };
 
 

@@ -30,25 +30,25 @@ int main(void)
     // Test damage taking and death
     std::cout << "\n(Testing Damage & Death)\n" << std::endl;
     ClapTrap damage_trap("clap2");
-    damage_trap.takeDamage(5);    // Should survive
-    damage_trap.takeDamage(5);    // Should die
-    damage_trap.takeDamage(5);    // Should show already dead message
-    damage_trap.attack("Skag");  // Should fail due to death
-    damage_trap.beRepaired(5);    // Should fail due to death
+    damage_trap.takeDamage(5);    // 5 hp left
+    damage_trap.takeDamage(5);    // die 0 hp
+    damage_trap.takeDamage(5);    // already dead bro
+    damage_trap.attack("Skag");  // fail due to death
+    damage_trap.beRepaired(5);    // fail due to death
 
     std::cout << "---" << std::endl;
 
     // Test repair functionality
     std::cout << "\n(Testing Repair)\n" << std::endl;
     ClapTrap repair_trap("clap3");
-    repair_trap.takeDamage(5);    // Take some damage
-    repair_trap.beRepaired(2);    // Repair some damage
-    repair_trap.beRepaired(3);    // Repair more damage
+    repair_trap.takeDamage(5);    // 5hp left
+    repair_trap.beRepaired(2);    // 7 hp
+    repair_trap.beRepaired(3);    // 10hp
 
     std::cout << "---" << std::endl;
 
     // Test energy point depletion with repairs
-    std::cout << "\n(Testing Energy Point Depletion with Repairs)\n" << std::endl;
+    std::cout << "\n(Testing Repairs when no more energy)\n" << std::endl;
     ClapTrap energy_trap("clap4");
     for (int i = 0; i < 10; i++) {
         energy_trap.beRepaired(1);
