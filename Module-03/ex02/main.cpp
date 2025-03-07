@@ -1,14 +1,17 @@
 #include <iostream>
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 void clapTest();
 void scavTest();
+void fragTest();
 
 int main(void)
 {
-    clapTest();
-    scavTest();
+    // clapTest();
+    // scavTest();
+    fragTest();
     return 0;
 }
 
@@ -137,6 +140,76 @@ void scavTest()
     guardTrap.guardGate(); // Should enter gate keeper mode
     guardTrap.takeDamage(100); // 0hp left, die
     guardTrap.guardGate(); // Should fail due to death
+
+    std::cout << "---\n" << std::endl;
+    
+
+}
+
+void fragTest()
+{
+    std::cout << "Testing FragTrap" << std::endl;
+
+    // Test default, copy constructors
+    std::cout << "\n(Testing constructors)\n" << std::endl;
+    FragTrap dFragtrap;
+    FragTrap fragtrap("frag1");
+    FragTrap cFragtrap(fragtrap);
+
+    std::cout << "---" << std::endl;
+
+    // Test assignment
+    std::cout << "\n(Testing Assignment)\n" << std::endl;
+    FragTrap assignTrap;
+    assignTrap = fragtrap;
+
+    std::cout << "---" << std::endl;
+
+    // Test attack and energy points depletion
+    std::cout << "\n(Testing Attack & Energy Points)\n" << std::endl;
+    for (int i = 0; i < 100; i++)
+    {
+        fragtrap.attack("Handsome Jack");
+    }
+    fragtrap.attack("Handsome Jack"); // Should fail due to no energy
+
+    std::cout << "---" << std::endl;
+
+    // Test damage taking and death
+    std::cout << "\n(Testing Damage & Death)\n" << std::endl;
+    FragTrap damageTrap("frag2");
+    damageTrap.takeDamage(50);  // 50 hp left
+    damageTrap.takeDamage(50);  // die 0 hp
+    damageTrap.takeDamage(50);  // already dead bro
+
+    std::cout << "---" << std::endl;
+
+    // Test repair functionality
+    std::cout << "\n(Testing Repair)\n" << std::endl;
+    FragTrap repairTrap("frag3");
+    repairTrap.takeDamage(50); // 50hp left
+    repairTrap.beRepaired(20); // 70 hp
+    repairTrap.beRepaired(30); // 100hp
+    repairTrap.beRepaired(20); // 100hp
+
+    std::cout << "---" << std::endl;
+
+    // Test energy point depletion with repairs
+    std::cout << "\n(Testing Repairs when no more energy)\n" << std::endl;
+    FragTrap energyTrap("frag4");
+    for (int i = 0; i < 100; i++)
+    {
+        energyTrap.beRepaired(1);
+    }
+    energyTrap.beRepaired(1); // Should fail due to no energy
+    std::cout << "---\n" << std::endl;
+
+    // Test high five request
+    std::cout << "\n(Testing High Five Request)\n" << std::endl;
+    FragTrap highFiveTrap("frag4");
+    highFiveTrap.highFivesGuys(); // Should request a high five
+    highFiveTrap.takeDamage(100); // 0hp left, die
+    highFiveTrap.highFivesGuys(); // Should fail due to death
 
     std::cout << "---\n" << std::endl;
     

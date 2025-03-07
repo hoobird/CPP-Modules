@@ -30,10 +30,11 @@ void clapTest()
 
     // Test attack and energy points depletion
     std::cout << "\n(Testing Attack & Energy Points)\n" << std::endl;
-    for (int i = 0; i < 11; i++)
+    for (int i = 0; i < 10; i++)
     {
         claptrap.attack("Handsome Jack");
     }
+    claptrap.attack("Handsome Jack"); // Should fail due to no energy
 
     std::cout << "---" << std::endl;
 

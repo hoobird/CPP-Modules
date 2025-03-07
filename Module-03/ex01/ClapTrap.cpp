@@ -7,7 +7,7 @@ ClapTrap::ClapTrap()
     this->hitPoints = 10;
     this->energyPoints = 10;
     this->attackDamage = 0;
-    std::cout << this->type << " is constructed with default settings" << std::endl;
+    displayStatus("is constructed with default settings");
 }
 
 ClapTrap::ClapTrap(std::string name)

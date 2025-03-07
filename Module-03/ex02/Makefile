@@ -2,10 +2,10 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -MMD
 VFLAG = -std=c++98
 
-SRC = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJ = $(SRC:.cpp=.o)
 DEP = $(OBJ:.o=.d)
-NAME = borderlandsThePreSequel
+NAME = borderlands2
 
 all: $(NAME)
 
