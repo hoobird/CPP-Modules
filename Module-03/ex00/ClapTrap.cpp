@@ -2,15 +2,17 @@
 
 ClapTrap::ClapTrap()
 {
-    this->name = "Default";
+    this->type = "ClapTrap";
+    this->name = "Default ClapTrap";
     this->hitPoints = 10;
     this->energyPoints = 10;
     this->attackDamage = 0;
-    std::cout << "ClapTrap is constructed with default settings" << std::endl;
+    std::cout << this->type << " is constructed with default settings" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name)
 {
+    this->type = "ClapTrap";
     this->name = name;
     this->hitPoints = 10;
     this->energyPoints = 10;
@@ -19,6 +21,7 @@ ClapTrap::ClapTrap(std::string name)
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other):
+    type(other.type),
     name(other.name),
     hitPoints(other.hitPoints), 
     energyPoints(other.energyPoints), 
@@ -30,6 +33,7 @@ ClapTrap::ClapTrap(const ClapTrap &other):
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
     if (this != &other) {
+        this->type = other.type;
         this->name = other.name;
         this->hitPoints = other.hitPoints;
         this->energyPoints = other.energyPoints;
@@ -41,7 +45,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "ClapTrap " << this->name <<" is destructed" << std::endl;
+    std::cout << this->type << " " << this->name <<" is destructed" << std::endl;
 }
 
 void ClapTrap::attack(const std::string &target)
@@ -55,7 +59,7 @@ void ClapTrap::attack(const std::string &target)
         return;
     }
     this->energyPoints -= 1;
-    std::cout << "ClapTrap " << this->name << " attacks " << target << " for " 
+    std::cout << this->type << " " << this->name << " attacks " << target << " for " 
               << this->attackDamage << " damage!";
     displayStatus("");
 }
@@ -72,7 +76,7 @@ void ClapTrap::takeDamage(unsigned int amount)
         return;
     }
     this->hitPoints -= amount;
-    std::cout << "ClapTrap " << this->name << " takes " << amount << " damage!";
+    std::cout << this->type << " " << this->name << " takes " << amount << " damage!";
     displayStatus("");
 }
 
@@ -88,7 +92,7 @@ void ClapTrap::beRepaired(unsigned int amount)
     }
     this->energyPoints -= 1;
     this->hitPoints += amount;
-    std::cout << "ClapTrap " << this->name << " healed up by " << amount << " HP!";
+    std::cout << this->type << " " << this->name << " healed up by " << amount << " HP!";
     displayStatus("");
 }
 
@@ -96,6 +100,6 @@ void ClapTrap::beRepaired(unsigned int amount)
 void ClapTrap::displayStatus(const std::string& action) const
 {
     if (!action.empty())
-       std::cout << "ClapTrap " << this->name << " ";
+       std::cout << this->type << " " << this->name << " ";
     std::cout << action << " [HP: " << this->hitPoints << ", EP: " << this->energyPoints << "]" << std::endl;
 }
