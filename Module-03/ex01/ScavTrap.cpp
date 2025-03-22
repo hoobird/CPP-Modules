@@ -45,6 +45,22 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
     return *this;
 }
 
+void ScavTrap::attack(const std::string &target)
+{
+    if (this->hitPoints == 0) {
+        displayStatus("cannot attack as it is already destroyed!!");
+        return;
+    }
+    if (this->energyPoints == 0) {
+        displayStatus("has run out of energy points!!");
+        return;
+    }
+    this->energyPoints -= 1;
+    std::cout << this->type << " " << this->name << " attacks " << target << " for " 
+              << this->attackDamage << " damage!!";
+    displayStatus("");
+}
+
 // Guard Gate Mode
 void ScavTrap::guardGate()
 {
