@@ -45,7 +45,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << this->type << " " << this->name <<" is destructed" << std::endl;
+    std::cout << "ClapTrap " << this->name <<" is destructed" << std::endl;
 }
 
 void ClapTrap::attack(const std::string &target)

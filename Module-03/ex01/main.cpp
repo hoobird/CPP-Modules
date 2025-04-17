@@ -7,7 +7,7 @@ void scavTest();
 
 int main(void)
 {
-    clapTest();
+    // clapTest();
     scavTest();
     return 0;
 }
@@ -79,10 +79,11 @@ void scavTest()
 
     // Test default, copy constructors
     std::cout << "\n(Testing constructors)\n" << std::endl;
-    ScavTrap dScavtrap;
+    // ScavTrap dScavtrap;
     ScavTrap scavtrap("scav1");
     ScavTrap cScavtrap(scavtrap);
-
+    cScavtrap.attack("Handsome Jack");
+    return;
     std::cout << "---" << std::endl;
 
     // Test assignment

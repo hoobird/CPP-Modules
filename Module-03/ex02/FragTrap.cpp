@@ -41,7 +41,7 @@ FragTrap &FragTrap::operator=(const FragTrap &other)
 
 FragTrap::~FragTrap()
 {
-    std::cout << this->type << " " << this->name << " destroyed." << std::endl;
+    std::cout << "FragTrap " << this->name << " is destructed" << std::endl;
 }
 
 

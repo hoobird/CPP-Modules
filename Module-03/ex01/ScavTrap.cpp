@@ -23,12 +23,12 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 
 ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 {
-    
+
 }
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << this->type << " " << this->name << " destroyed." << std::endl;
+    std::cout << "ScavTrap " << this->name << " is destructed" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &other)

@@ -28,7 +28,7 @@ ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << this->type << " " << this->name << " destroyed." << std::endl;
+    std::cout << "ScavTrap " << this->name << " is destructed" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &other)
@@ -56,8 +56,8 @@ void ScavTrap::attack(const std::string &target)
         return;
     }
     this->energyPoints -= 1;
-    std::cout << this->type << " " << this->name << " attacks " << target << " for " 
-              << this->attackDamage << " damage!!";
+    std::cout << this->type << " " << this->name << " bonks " << target << " for " 
+              << this->attackDamage << " damage!";
     displayStatus("");
 }
 
