@@ -18,14 +18,14 @@ int main()
     std::cout << std::endl;
 
     std::cout << "annie->makeSound() ➡️  ";
-    kitty->makeSound();
+    annie->makeSound();
     std::cout << "doggy->makeSound() ➡️  ";
     doggy->makeSound();
     std::cout << "kitty->makeSound() ➡️  ";
     kitty->makeSound();
     std::cout << std::endl;
 
-    std::cout << "⚠️ Wtf is going on ⚠️" << std::endl;
+    std::cout << "⚠️  Wtf is going on  ⚠️" << std::endl;
     const WrongAnimal *wrongDog = new WrongAnimal();
     const WrongAnimal *wrongCat = new WrongCat();
     std::cout << std::endl;
