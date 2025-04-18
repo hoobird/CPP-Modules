@@ -10,7 +10,7 @@ void populateZoo(int n, const Animal *animals[]);
 
 int main()
 {
-    int n = 1000;
+    int n = 10;
 
     std::cout << "<< Constructing animals and the Zoo >>" << std::endl;
     const Animal *zoo[n];
