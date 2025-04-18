@@ -8,7 +8,7 @@ class Animal
 {
     public:
         Animal();
-        Animal(Animal const & src);
+        Animal(Animal const &other);
         Animal & operator=(Animal const & other);
         virtual ~Animal();
 
