@@ -40,7 +40,7 @@ int main()
     wrongCat->makeSound();
     std::cout << std::endl;
 
-    std::cout << "<< Deconstructing animals in Zoo 🐾 >>" << std::endl;
+    std::cout << "<< Deconstructing animals in Zoo >>" << std::endl;
     delete annie;
     delete doggy;
     delete kitty;
