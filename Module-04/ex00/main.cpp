@@ -6,7 +6,7 @@
 
 int main()
 {
-    std::cout << "<< Constructing animals in Zoo 🐾 >>" << std::endl;
+    std::cout << "<< Constructing animals in Zoo >>" << std::endl;
     const Animal *annie = new Animal();
     const Animal *doggy = new Dog();
     const Animal *kitty = new Cat();
