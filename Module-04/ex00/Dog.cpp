@@ -2,21 +2,21 @@
 
 Dog::Dog()
 {
-    this->type = "Dog";
     std::cout << "🐶 Dog default constructor called" << std::endl;
+    this->type = "Dog";
 }
 Dog::Dog(Dog const &other)
 {
-    *this = other;
     std::cout << "🐶 Dog copy constructor called" << std::endl;
+    *this = other;
 }
 Dog &Dog::operator=(Dog const &other)
 {
+    std::cout << "🐶 Dog assignment operator called" << std::endl;
     if (this != &other)
     {
         this->type = other.type;
     }
-    std::cout << "🐶 Dog assignment operator called" << std::endl;
     return *this;
 }
 Dog::~Dog()

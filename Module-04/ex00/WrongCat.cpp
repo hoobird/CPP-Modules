@@ -2,21 +2,21 @@
 
 WrongCat::WrongCat()
 {
-    this->type = "WrongCat";
     std::cout << "🐯 WrongCat default constructor called" << std::endl;
+    this->type = "WrongCat";
 }
 WrongCat::WrongCat(WrongCat const &other)
 {
-    *this = other;
     std::cout << "🐯 WrongCat copy constructor called" << std::endl;
+    *this = other;
 }
 WrongCat &WrongCat::operator=(WrongCat const &other)
 {
+    std::cout << "🐯 WrongCat assignment operator called" << std::endl;
     if (this != &other)
     {
         this->type = other.type;
     }
-    std::cout << "🐯 WrongCat assignment operator called" << std::endl;
     return *this;
 }
 WrongCat::~WrongCat()
