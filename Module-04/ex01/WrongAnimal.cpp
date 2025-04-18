@@ -7,17 +7,17 @@ WrongAnimal::WrongAnimal(): type("WrongAnimal")
 
 WrongAnimal::WrongAnimal(WrongAnimal const &other)
 {
-    *this = other;
     std::cout << "👹 WrongAnimal copy constructor called" << std::endl;
+    *this = other;
 }
 
 WrongAnimal &WrongAnimal::operator=(WrongAnimal const &other)
 {
+    std::cout << "👹 WrongAnimal assignment operator called" << std::endl;
     if (this != &other)
     {
         this->type = other.type;
     }
-    std::cout << "👹 WrongAnimal assignment operator called" << std::endl;
     return *this;
 }
 

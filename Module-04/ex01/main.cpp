@@ -4,47 +4,59 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
+void deleteAnimals(int n, const Animal *animals[]);
+void shallowTest();
+void populateZoo(int n, const Animal *animals[]);
+
 int main()
 {
-    std::cout << "<< Constructing animals in Zoo 🐾 >>" << std::endl;
-    const Animal *annie = new Animal();
-    const Animal *doggy = new Dog();
-    const Animal *kitty = new Cat();
+    int n = 1000;
+
+    std::cout << "<< Constructing animals and the Zoo >>" << std::endl;
+    const Animal *zoo[n];
+
+    populateZoo(n, zoo);
     std::cout << std::endl;
 
-    std::cout<< "annie->getType() ➡️  " << annie->getType() << std::endl;
-    std::cout << "doggy->getType() ➡️  " << doggy->getType() << std::endl;
-    std::cout << "kitty->getType() ➡️  " << kitty->getType() << std::endl;
-    std::cout << std::endl;
+    // Test for shallow copy
+    shallowTest();
 
-    std::cout << "annie->makeSound() ➡️  ";
-    kitty->makeSound();
-    std::cout << "doggy->makeSound() ➡️  ";
-    doggy->makeSound();
-    std::cout << "kitty->makeSound() ➡️  ";
-    kitty->makeSound();
     std::cout << std::endl;
-
-    std::cout << "⚠️ Wtf is going on ⚠️" << std::endl;
-    const WrongAnimal *wrongDog = new WrongAnimal();
-    const WrongAnimal *wrongCat = new WrongCat();
+    std::cout << "<< Deconstructing animals in Zoo >>" << std::endl;
+    deleteAnimals(n, zoo);
     std::cout << std::endl;
-    
-    std::cout << "wrongDog->getType() ➡️  " << wrongDog->getType() << std::endl;
-    std::cout << "wrongCat->getType() ➡️  " << wrongCat->getType() << std::endl;
-    std::cout << std::endl;
-   
-    std::cout << "wrongDog->makeSound() ➡️  ";
-    wrongDog->makeSound();
-    std::cout << "wrongCat->makeSound() ➡️  ";
-    wrongCat->makeSound();
-    std::cout << std::endl;
-
-    std::cout << "<< Deconstructing animals in Zoo 🐾 >>" << std::endl;
-    delete annie;
-    delete doggy;
-    delete kitty;
-    std::cout << std::endl;
-
     return 0;
+}
+
+void shallowTest()
+{
+    std::cout << "<< Shallow copy test >>" << std::endl;
+    Dog dog1;
+    Dog dog2(dog1);
+    dog1.compareDog(dog2);
+    std::cout << std::endl;
+
+    Cat cat1;
+    Cat cat2(cat1);
+    cat1.compareCat(cat2);
+    std::cout << std::endl;
+}
+
+void populateZoo(int n, const Animal *animals[])
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (i < n / 2)
+            animals[i] = new Dog();
+        else
+            animals[i] = new Cat();
+    }
+}
+
+void deleteAnimals(int n, const Animal *animals[])
+{
+    for (int i = 0; i < n; i++)
+    {
+        delete animals[i];
+    }
 }
