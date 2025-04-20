@@ -1,7 +1,7 @@
 #ifndef CURE_HPP
 # define CURE_HPP
 
-#include "AMateria.hpp"
+#include "ICharacter.hpp"
 #include <iostream>
 
 class Cure : public AMateria
