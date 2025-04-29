@@ -18,11 +18,8 @@ AMateria::AMateria(AMateria const &other)
 
 AMateria &AMateria::operator=(AMateria const &other)
 {
-    // std::cout << "📋 AMateria assignment operator called" << std::endl;
-    if (this != &other)
-    {
-        this->type = other.type;
-    }
+    // std::cout << "📋 AMateria assignment operator called but DOES NOTHING" << std::endl;
+    (void) other;
     return *this;
 }
 

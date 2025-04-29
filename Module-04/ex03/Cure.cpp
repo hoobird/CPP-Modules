@@ -8,16 +8,12 @@ Cure::Cure() : AMateria("cure")
 Cure::Cure(Cure const &other) : AMateria(other)
 {
     // std::cout << "⚕️ Cure copy constructor called" << std::endl;
-    *this = other;
 }
 
 Cure &Cure::operator=(Cure const &other)
 {
-    // std::cout << "⚕️ Cure assignment operator called" << std::endl;
-    if (this != &other)
-    {
-        this->type = other.type;
-    }
+    // std::cout << "⚕️ Cure assignment operator called but DOES NOTHING" << std::endl;
+    (void) other;
     return *this;
 }
 

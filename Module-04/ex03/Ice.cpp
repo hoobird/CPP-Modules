@@ -8,15 +8,12 @@ Ice::Ice() : AMateria("ice")
 Ice::Ice(Ice const &other) : AMateria(other)
 {
     // std::cout << "🧊 Ice copy constructor called" << std::endl;
-    *this = other;
 }
 
 Ice &Ice::operator=(Ice const &other)
 {
-    // std::cout << "🧊 Ice assignment operator called" << std::endl;
-    if (this != &other) {
-        AMateria::operator=(other);
-    }
+    // std::cout << "🧊 Ice assignment operator called but DOES NOTHING" << std::endl;
+    (void) other;
     return *this;
 }
 
