@@ -21,7 +21,7 @@ Character::Character(Character const &other): name(other.name)
     {
         inventory[i] = NULL;
         if (other.inventory[i])
-            inventory[i] = other.inventory[i]->clone();           
+            inventory[i] = other.inventory[i]->clone(); // deep copy          
     }
 }
 
@@ -36,7 +36,7 @@ Character &Character::operator=(Character const &other)
             delete inventory[i];
             inventory[i] = NULL;
             if (other.inventory[i])
-                inventory[i] = other.inventory[i]->clone();
+                inventory[i] = other.inventory[i]->clone(); // deep copy
         }
     }
     return *this;
@@ -62,6 +62,20 @@ std::string const &Character::getName() const
 
 void Character::equip(AMateria* m)
 {
+    if (!m)
+    {
+        std::cout << "🧑 " << this->name << ": i cant equip nothing boss" << std::endl;
+        return;
+    }
+    // Check for dups
+    for (int i = 0; i < 4; ++i)
+    {
+        if (inventory[i] == m)
+        {
+            std::cout << "🧑 " << this->name << ": This particular Materia " << m->getType() << " already in inventory" << std::endl;
+            return;
+        }
+    }
     for (int i = 0; i < 4; ++i)
     {
         if (!inventory[i])
@@ -87,7 +101,6 @@ void Character::unequip(int index)
         return;
     }
     std::cout << "🧑 " << this->name << " unequipped " << inventory[index]->getType() << std::endl;
-    delete inventory[index];
     inventory[index] = NULL;
 }
 
@@ -95,7 +108,7 @@ void Character::use(int index, ICharacter& target)
 {
     if (index < 0 || index >= 4)
     {
-        std::cout << "🧑 " << this->name << ": Invalid Index " << index << std::endl;
+        std::cout << "🧑 " << this->name << ": Invalid index " << index << std::endl;
         return;
     }
     if (!inventory[index])

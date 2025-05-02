@@ -22,10 +22,11 @@ Ice::~Ice()
     // std::cout << "🧊 Ice destructor called" << std::endl;
 }
 
+// clone() will return a new instance of the same type (i.e., if you clone an Ice Materia, you will get a new Ice Materia).
 AMateria *Ice::clone() const
 {
     // std::cout << "🧊 Ice clone called" << std::endl;
-    return new Ice(*this);
+    return new Ice();
 }
 
 void Ice::use(ICharacter &target)

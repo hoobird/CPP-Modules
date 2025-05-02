@@ -25,7 +25,7 @@ Cure::~Cure()
 AMateria *Cure::clone() const
 {
     // std::cout << "⚕️ Cure clone called" << std::endl;
-    return new Cure(*this);
+    return new Cure();
 }
 
 void Cure::use(ICharacter &target)
