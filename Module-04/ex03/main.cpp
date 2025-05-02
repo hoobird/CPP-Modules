@@ -4,10 +4,9 @@
 #include "Cure.hpp"
 
 void subjectPdfExample();
-
 void materiasourcetest();
-
 void materiatest();
+void charactertest();
 
 int main()
 {
@@ -15,17 +14,23 @@ int main()
     subjectPdfExample();
     materiasourcetest();
     materiatest();
+    charactertest();
 
+    return 0;
+}
+
+void charactertest()
+{
     // Test Character
     std::cout << "== Character Test ==" << std::endl;
-    Character   *me = new Character("hoobird");
+    Character *me = new Character("hoobird");
     IMateriaSource *source = new MateriaSource();
     source->learnMateria(new Ice());
     source->learnMateria(new Cure());
 
     AMateria *tmp;
     tmp = source->createMateria("ice");
-    
+
     me->equip(tmp);
     me->equip(tmp); // should not be able to equip the same materia
     tmp = source->createMateria("cure");
@@ -35,13 +40,11 @@ int main()
     tmp = source->createMateria("cure");
     me->equip(tmp);
     tmp = source->createMateria("cure");
-    me->equip(tmp); 
-
+    me->equip(tmp);
 
     delete me;
     delete source;
-
-    return 0;
+    delete tmp;
 }
 
 void materiatest()

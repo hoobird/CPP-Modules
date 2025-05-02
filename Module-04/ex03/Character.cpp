@@ -85,7 +85,7 @@ void Character::equip(AMateria* m)
             return;
         }
     }
-    std::cout << "🧑 " << this->name << "'s inventory is full" << std::endl;
+    std::cout << "🧑 " << this->name << " unable to equip this materia!" << std::endl;
 }
 
 void Character::unequip(int index)
