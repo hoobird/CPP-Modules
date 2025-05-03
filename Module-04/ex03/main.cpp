@@ -88,6 +88,7 @@ void materiasourcetest()
 
     IMateriaSource *frostysource = new MateriaSource();
     ICharacter *olaf = new Character("Olaf");
+    ICharacter *falo = new Character("Falo");
     frostysource->learnMateria(new Ice());
     frostysource->learnMateria(new Ice());
     frostysource->learnMateria(new Ice());
@@ -103,11 +104,19 @@ void materiasourcetest()
     if (tmp2 == 0)
         std::cout << "Cure not found too too" << std::endl;
 
+    // unequip
+    AMateria *tmp3 = frostysource->createMateria("ice");
+    olaf->equip(tmp3);
+    olaf->use(1, *falo);
+    olaf->unequip(1);
+
     // delete all
     delete source;
     delete frostysource;
     delete olaf;
+    delete falo;
     delete tmp2;
+    delete tmp3;
     std::cout << std::endl;
 }
 

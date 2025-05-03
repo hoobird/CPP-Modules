@@ -44,6 +44,8 @@ int main()
     delete annie;
     delete doggy;
     delete kitty;
+    delete wrongDog;
+    delete wrongCat;
     std::cout << std::endl;
 
     return 0;
