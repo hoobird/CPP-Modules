@@ -13,3 +13,13 @@ Form::Form(std::string name, int signGrade, int executeGrade): name(name), isSig
         throw GradeTooLowException();
     std::cout << "📜 Form created: " << this->name << ", sign grade " << this->signGrade << ", execute grade " << this->executeGrade << std::endl;
 }
+
+Form::Form(Form const &other): name(other.name), isSigned(other.isSigned), signGrade(other.signGrade), executeGrade(other.executeGrade)
+{
+    std::cout << "📜 Form copy constructor called: " << this->name << ", isSigned " << this->isSigned << ", sign grade " << this->signGrade << ", execute grade " << this->executeGrade << std::endl;
+}
+
+Form &Form::operator=(Form const &other)
+{
+    if
+}
