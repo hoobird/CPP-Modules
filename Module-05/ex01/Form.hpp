@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include "Bureaucrat.hpp"
 
 class Form 
 {
@@ -13,10 +14,12 @@ class Form
         Form &operator=(Form const &other);
         ~Form();
 
-        const std::string getName();
-        bool    getIsSigned();
-        const int   getSignGrade();
-        const int   getExecuteGrade();
+        const std::string getName() const;
+        bool    getIsSigned() const;
+        const int   getSignGrade() const;
+        const int   getExecuteGrade() const;
+
+        void    beSigned(Bureaucrat &b);
 
         class GradeTooHighException : public std::exception
         {
