@@ -42,19 +42,24 @@ bool Form::getIsSigned() const
     return this->isSigned;
 }
 
-const int Form::getSignGrade() const
+ int Form::getSignGrade() const
 {
     return this->signGrade;
 }
 
-const int Form::getExecuteGrade() const
+ int Form::getExecuteGrade() const
 {
     return this->executeGrade;
 }
 
 void Form::beSigned(Bureaucrat &b)
 {
-    if ()
+    if (b.getGrade() > this->signGrade)
+        throw GradeTooLowException();
+    if (this->isSigned == true)
+        std::cout << "📜 Form already signed" << std::endl;
+    this->isSigned = true;
+    std::cout << "📜 Form signed by " << b.getName() << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &o, const Form &f) 

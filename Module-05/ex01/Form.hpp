@@ -3,8 +3,8 @@
 
 #include <string>
 #include <iostream>
-#include "Bureaucrat.hpp"
 
+class Bureaucrat;
 class Form 
 {
     public:
@@ -16,7 +16,7 @@ class Form
 
         const std::string getName() const;
         bool    getIsSigned() const;
-        const int   getSignGrade() const;
+        const int   &getSignGrade() const;
         const int   getExecuteGrade() const;
 
         void    beSigned(Bureaucrat &b);

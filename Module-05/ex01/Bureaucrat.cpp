@@ -58,6 +58,13 @@ void Bureaucrat::decrementGrade()
     ++grade;
 }
 
+void Bureaucrat::signForm(const Form &f) const
+{
+    if (f.getIsSigned() == true)
+        std::cout << "🧑‍💼 " << this->name << " couldn’t sign " << f.getName() << " because its already signed. " << std::endl;
+}
+
+
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
     return "⚠️  Grade too high, 1 is the upper limit";
 }
