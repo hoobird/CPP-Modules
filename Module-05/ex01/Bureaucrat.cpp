@@ -62,6 +62,7 @@ void Bureaucrat::signForm(const Form &f) const
 {
     if (f.getIsSigned() == true)
         std::cout << "🧑‍💼 " << this->name << " couldn’t sign " << f.getName() << " because its already signed. " << std::endl;
+    
 }
 
 
