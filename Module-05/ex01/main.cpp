@@ -2,9 +2,15 @@
 #include "Form.hpp"
 
 int main() {
+
     std::cout << "-- Form with invalid sign grade test -- " << std::endl;
     try {
-        Form f1("Tax Form", 0, 50);  // Too high sign grade
+        Form f1("Tax Form", 0, 50);  // too high sign grade
+    } catch (std::exception& e) {
+        std::cerr << "Exception caught: " << e.what() << std::endl;
+    }
+    try {
+        Form f1("Tax Form", 151, 50);  // too high sign grade
     } catch (std::exception& e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
@@ -12,7 +18,12 @@ int main() {
 
     std::cout << "-- Form with invalid execute grade test -- " << std::endl;
     try {
-        Form f2("Permit Form", 50, 151);  // Too low execute grade
+        Form f2("Permit Form", 50, 0);  // too low execute grade
+    } catch (std::exception& e) {
+        std::cerr << "Exception caught: " << e.what() << std::endl;
+    }
+    try {
+        Form f2("Permit Form", 50, 151);  // too low execute grade
     } catch (std::exception& e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
@@ -21,7 +32,7 @@ int main() {
     std::cout << "-- Form signing with sufficient grade test -- " << std::endl;
     try {
         Bureaucrat b1("Alice", 30);
-        Form f3("Approval Form", 50, 25);
+        Form f3("Basic Form", 50, 25);
         
         std::cout << "Initial state: " << f3 << std::endl;
         std::cout << "Bureaucrat: " << b1 << std::endl;
@@ -45,13 +56,13 @@ int main() {
         std::cout << "Bureaucrat: " << b2 << std::endl;
         
         b2.signForm(f4);  // Should throw GradeTooLowException
-        std::cout << "This line should not be reached" << std::endl;
+        std::cout << "If this line print the fail gg.com" << std::endl;
     } catch (std::exception& e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
     std::cout << std::endl;
 
-    std::cout << "-- Direct beSigned test with insufficient grade -- " << std::endl;
+    std::cout << "-- Directly call beSigned test with insufficient grade -- " << std::endl;
     try {
         Bureaucrat b3("Charlie", 100);
         Form f5("Secret Form", 50, 25);

@@ -31,7 +31,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &other)
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "🎩 Bureaucrat destroyed: " << name << ", grade " << grade << std::endl;
+    std::cout << "🎩 Bureaucrat destroyed: " << name << std::endl;
 }
 
 const std::string Bureaucrat::getName() const
@@ -64,7 +64,7 @@ void Bureaucrat::signForm(Form &f) const
         std::cout << "🎩 " << this->name << " couldn’t sign form " << f.getName() << " because its already signed. " << std::endl;
     else {
         f.beSigned(*this);
-        std::cout << "🎩 " << this->name << " signed form " << f.getName();
+        std::cout << "🎩 " << this->name << " signed form " << f.getName() << std::endl;
     }
 }
 
