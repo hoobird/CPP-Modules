@@ -2,7 +2,7 @@
 
 Bureaucrat::Bureaucrat(): name("default"), grade(150)
 {
-    std::cout << "🧑‍💼 Default Bureaucrat created: " << name << ", grade " << grade << std::endl;
+    std::cout << "🎩 Default Bureaucrat constructed: " << name << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string name, int grade): name(name), grade(grade)
@@ -11,12 +11,12 @@ Bureaucrat::Bureaucrat(const std::string name, int grade): name(name), grade(gra
         throw GradeTooHighException();
     if (grade > 150)
         throw GradeTooLowException();
-    std::cout << "🧑‍💼 Bureaucrat created: " << name << ", grade " << grade << std::endl;
+    std::cout << "🎩 Bureaucrat constructed: " << name << std::endl;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &other): name(other.name), grade(other.grade)
 {
-    std::cout << "🧑‍💼 Bureaucrat copy constructor called: " << name << ", grade " << grade << std::endl;
+    std::cout << "🎩 Bureaucrat copy constructor called: " << name << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &other)
@@ -25,13 +25,13 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &other)
         // name is const, copier will keep his name
         this->grade = other.grade;
     }
-    std::cout << "🧑‍💼 Bureaucrat assignment operator called: " << name << ", grade " << grade << std::endl;
+    std::cout << "🎩 Bureaucrat copy assignment called: " << name << std::endl;
     return *this;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "🧑‍💼 Bureaucrat destroyed: " << name << ", grade " << grade << std::endl;
+    std::cout << "🎩 Bureaucrat destroyed: " << name << ", grade " << grade << std::endl;
 }
 
 const std::string Bureaucrat::getName() const
@@ -58,11 +58,14 @@ void Bureaucrat::decrementGrade()
     ++grade;
 }
 
-void Bureaucrat::signForm(const Form &f) const
+void Bureaucrat::signForm(Form &f) const
 {
     if (f.getIsSigned() == true)
-        std::cout << "🧑‍💼 " << this->name << " couldn’t sign " << f.getName() << " because its already signed. " << std::endl;
-    
+        std::cout << "🎩 " << this->name << " couldn’t sign form " << f.getName() << " because its already signed. " << std::endl;
+    else {
+        f.beSigned(*this);
+        std::cout << "🎩 " << this->name << " signed form " << f.getName();
+    }
 }
 
 
@@ -77,6 +80,6 @@ const char *Bureaucrat::GradeTooLowException::what() const throw() {
 
 std::ostream    &operator<<(std::ostream &o, const Bureaucrat &b)
 {
-    o << b.getName() << ", bureaucrat grade " << b.getGrade() << "." ;
+    o << "🎩ℹ️  " << b.getName() << ", bureaucrat grade: " << b.getGrade() << "." ;
     return o;
 }
