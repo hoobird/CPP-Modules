@@ -5,14 +5,14 @@
 #include <iostream>
 
 class Bureaucrat;
-class Form 
+class AForm 
 {
     public:
-        Form();
-        Form(std::string name, int signGrade, int executeGrade);
-        Form(Form const &other);
-        Form &operator=(Form const &other);
-        ~Form();
+        AForm();
+        AForm(std::string name, int signGrade, int executeGrade);
+        AForm(AForm const &other);
+        AForm &operator=(AForm const &other);
+        ~AForm();
 
         const std::string getName() const;
         bool    getIsSigned() const;
@@ -40,7 +40,7 @@ class Form
         const int   executeGrade;
 };
 
-std::ostream &operator<<(std::ostream &o, const Form &f);
+std::ostream &operator<<(std::ostream &o, const AForm &f);
 
 
 #endif

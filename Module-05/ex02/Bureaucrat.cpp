@@ -58,7 +58,7 @@ void Bureaucrat::decrementGrade()
     ++grade;
 }
 
-void Bureaucrat::signForm(Form &f) const
+void Bureaucrat::signForm(AForm &f) const
 {
     if (f.getIsSigned() == true)
         std::cout << "🎩 " << this->name << " couldn’t sign form " << f.getName() << " because its already signed. " << std::endl;
