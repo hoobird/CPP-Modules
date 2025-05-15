@@ -5,7 +5,7 @@ Bureaucrat::Bureaucrat(): name("default"), grade(150)
     std::cout << "🎩 Default Bureaucrat constructed: " << name << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string name, int grade): name(name), grade(grade)
+Bureaucrat::Bureaucrat(const std::string &name, int grade): name(name), grade(grade)
 {
     if (grade < 1)
         throw GradeTooHighException();
