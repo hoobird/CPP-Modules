@@ -6,7 +6,7 @@ AForm::AForm(): name("default"), isSigned(false), signGrade(1), executeGrade(1)
     std::cout << "📜 Default Form constructed: " << this->name << std::endl;
 }
 
-AForm::AForm(std::string name, int signGrade, int executeGrade): name(name), isSigned(false), signGrade(signGrade), executeGrade(executeGrade) 
+AForm::AForm(std::string const &name, int signGrade, int executeGrade): name(name), isSigned(false), signGrade(signGrade), executeGrade(executeGrade) 
 {
     if (signGrade < 1 || executeGrade < 1)
         throw GradeTooHighException();

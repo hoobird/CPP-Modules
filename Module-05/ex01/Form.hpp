@@ -9,7 +9,7 @@ class Form
 {
     public:
         Form();
-        Form(std::string name, int signGrade, int executeGrade);
+        Form(std::string const &name, int signGrade, int executeGrade);
         Form(Form const &other);
         Form &operator=(Form const &other);
         ~Form();
