@@ -3,19 +3,25 @@
 
 
 #include "AForm.hpp"
-
-class ShruberryCreationForm : public AForm 
+#include <fstream>
+class ShrubberyCreationForm : public AForm 
 {
     public:
-        ShruberryCreationForm(const std::string &target);
-        ShruberryCreationForm &operator=(ShruberryCreationForm const &other);
-        ~ShruberryCreationForm();
-
-        void	executed(Bureaucrat const &executor) const;
+        ShrubberyCreationForm(const std::string &target);
+        ShrubberyCreationForm(const ShrubberyCreationForm &other);
+        ShrubberyCreationForm &operator=(ShrubberyCreationForm const &other);
+        ~ShrubberyCreationForm();
         
-    
+        void	executeAction() const;
+
+        class FileOpenException : public std::exception
+        {
+            public:
+                const char* what() const throw();
+        };
+
     private:
-        ShruberryCreationForm();
+        ShrubberyCreationForm();
         const std::string target;
         
 };

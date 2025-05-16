@@ -3,17 +3,18 @@
 
 
 #include "AForm.hpp"
+#include <cstdlib>
 
 class RobotomyRequestForm : public AForm 
 {
     public:
         RobotomyRequestForm(const std::string &target);
+        RobotomyRequestForm(const RobotomyRequestForm &other);
         RobotomyRequestForm &operator=(RobotomyRequestForm const &other);
         ~RobotomyRequestForm();
 
-        void	executed(Bureaucrat const &executor) const;
+        void	executeAction() const;
         
-    
     private:
         RobotomyRequestForm();
         const std::string target;

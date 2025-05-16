@@ -19,6 +19,8 @@ class Bureaucrat
         void incrementGrade();
         void decrementGrade();
         void signForm(AForm &f) const;
+        void executeForm(AForm const & form) const;
+        
         class GradeTooHighException : public std::exception
         {
             public:
@@ -26,6 +28,12 @@ class Bureaucrat
         };
 
         class GradeTooLowException : public std::exception
+        {
+            public:
+                const char* what() const throw();
+        };
+
+        class FormExecutionFail : public std::exception
         {
             public:
                 const char* what() const throw();

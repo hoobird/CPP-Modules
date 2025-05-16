@@ -68,6 +68,16 @@ void Bureaucrat::signForm(AForm &f) const
     }
 }
 
+void Bureaucrat::executeForm(AForm const & form) const
+{
+    try {
+        form.execute(*this);
+        std::cout << "🎩 " << this->name << " executed form " << form.getName() << std::endl;
+    } catch (std::exception &e) {
+        throw FormExecutionFail();
+    }
+}
+
 
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
     return "⚠️  Grade too high, 1 is the upper limit";
@@ -76,6 +86,10 @@ const char *Bureaucrat::GradeTooHighException::what() const throw() {
 
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
     return "⚠️  Grade too low, 150 is the lower limit";
+}
+
+const char *Bureaucrat::FormExecutionFail::what() const throw() {
+    return "⚠️  Bureaucrat form execution failed";
 }
 
 std::ostream    &operator<<(std::ostream &o, const Bureaucrat &b)
