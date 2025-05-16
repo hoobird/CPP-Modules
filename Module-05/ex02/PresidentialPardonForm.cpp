@@ -33,4 +33,3 @@ void PresidentialPardonForm::executeAction() const
 {
     std::cout << "📜🏛 " << this->target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }
-

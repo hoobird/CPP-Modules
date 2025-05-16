@@ -1,80 +1,106 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main() {
-
-    std::cout << "-- Form with invalid sign grade test -- " << std::endl;
+    
+    std::cout << "\n==== TESTING SHRUBBERY CREATION FORM ====\n" << std::endl;
     try {
-        AForm f1("Tax Form", 0, 50);  // too high sign grade
-    } catch (std::exception& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
+        // Create bureaucrats with different grades
+        Bureaucrat low("Junior Engineer", 145);
+        Bureaucrat mid("Senior Engineer", 75);
+        Bureaucrat high("Staff Engineer", 5);
+        
+        // Create form
+        ShrubberyCreationForm shrubForm("garden");
+        
+        std::cout << "\n-- Form details --" << std::endl;
+        std::cout << shrubForm << std::endl;
+        
+        std::cout << "\n-- Low level bureaucrat tests --" << std::endl;
+        // Low can sign but not execute
+        low.signForm(shrubForm);
+        
+        try {
+            low.executeForm(shrubForm); // Should fail, grade too low
+        } catch (std::exception &e) {
+            std::cerr << "Exception caught: " << e.what() << std::endl;
+        }
+        
+        std::cout << "\n-- High level bureaucrat executes --" << std::endl;
+        high.executeForm(shrubForm); // Should succeed
+    } catch (std::exception &e) {
+        std::cerr << "Unexpected exception: " << e.what() << std::endl;
     }
+    
+    std::cout << "\n==== TESTING ROBOTOMY REQUEST FORM ====\n" << std::endl;
     try {
-        AForm f1("Tax Form", 151, 50);  // too high sign grade
-    } catch (std::exception& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
+        // Create bureaucrats with different grades
+        Bureaucrat low("Junior Engineer", 145);
+        Bureaucrat mid("Senior Engineer", 45);
+        Bureaucrat high("Staff Engineer", 5);
+        
+        // Create form
+        RobotomyRequestForm robotForm("subject");
+        
+        std::cout << "\n-- Form details --" << std::endl;
+        std::cout << robotForm << std::endl;
+        
+        std::cout << "\n-- Low level bureaucrat tests --" << std::endl;
+        try {
+            low.signForm(robotForm); // Should fail, grade too low
+        } catch (std::exception &e) {
+            std::cerr << "Exception caught: " << e.what() << std::endl;
+        }
+        
+        std::cout << "\n-- Mid level bureaucrat tests --" << std::endl;
+        mid.signForm(robotForm);
+        mid.executeForm(robotForm); // Should succeed
+        
+        std::cout << "\n-- Testing robotomy multiple times --" << std::endl;
+        // Try few more times to see success/failure
+        high.executeForm(robotForm);
+        high.executeForm(robotForm);
+    } catch (std::exception &e) {
+        std::cerr << "Unexpected exception: " << e.what() << std::endl;
     }
-    std::cout << std::endl;
-
-    std::cout << "-- Form with invalid execute grade test -- " << std::endl;
+    
+    std::cout << "\n==== TESTING PRESIDENTIAL PARDON FORM ====\n" << std::endl;
     try {
-        AForm f2("Permit Form", 50, 0);  // too low execute grade
-    } catch (std::exception& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
+        // Create bureaucrats with different grades
+        Bureaucrat low("Junior Engineer", 145);
+        Bureaucrat mid("Senior Engineer", 20);
+        Bureaucrat high("Staff Engineer", 1);
+        
+        // Create form
+        PresidentialPardonForm pardonForm("criminal");
+        
+        std::cout << "\n-- Form details --" << std::endl;
+        std::cout << pardonForm << std::endl;
+        
+        std::cout << "\n-- Unsigned form test --" << std::endl;
+        try {
+            high.executeForm(pardonForm); // Should fail, form not signed
+        } catch (std::exception &e) {
+            std::cerr << "Exception caught: " << e.what() << std::endl;
+        }
+        
+        std::cout << "\n-- Mid level bureaucrat tests --" << std::endl;
+        mid.signForm(pardonForm);
+        
+        try {
+            mid.executeForm(pardonForm); // Should fail, grade too low
+        } catch (std::exception &e) {
+            std::cerr << "Exception caught: " << e.what() << std::endl;
+        }
+        
+        std::cout << "\n-- High level bureaucrat executes --" << std::endl;
+        high.executeForm(pardonForm); // Should succeed
+    } catch (std::exception &e) {
+        std::cerr << "Unexpected exception: " << e.what() << std::endl;
     }
-    try {
-        AForm f2("Permit Form", 50, 151);  // too low execute grade
-    } catch (std::exception& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
-    }
-    std::cout << std::endl;
-
-    std::cout << "-- Form signing with sufficient grade test -- " << std::endl;
-    try {
-        Bureaucrat b1("Alice", 30);
-        AForm f3("Basic Form", 50, 25);
-        
-        std::cout << "Initial state: " << f3 << std::endl;
-        std::cout << "Bureaucrat: " << b1 << std::endl;
-        
-        b1.signForm(f3);
-        std::cout << "After signing: " << f3 << std::endl;
-        
-        // Try signing again
-        b1.signForm(f3);
-    } catch (std::exception& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
-    }
-    std::cout << std::endl;
-
-    std::cout << "-- Form signing with insufficient grade test -- " << std::endl;
-    try {
-        Bureaucrat b2("Bob", 75);
-        AForm f4("Classified Form", 25, 10);
-        
-        std::cout << "Initial state: " << f4 << std::endl;
-        std::cout << "Bureaucrat: " << b2 << std::endl;
-        
-        b2.signForm(f4);  // Should throw GradeTooLowException
-        std::cout << "If this line print the fail gg.com" << std::endl;
-    } catch (std::exception& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
-    }
-    std::cout << std::endl;
-
-    std::cout << "-- Directly call beSigned test with insufficient grade -- " << std::endl;
-    try {
-        Bureaucrat b3("Charlie", 100);
-        AForm f5("Secret Form", 50, 25);
-        
-        std::cout << "Initial state: " << f5 << std::endl;
-        std::cout << "Bureaucrat: " << b3 << std::endl;
-        
-        f5.beSigned(b3);  // Should throw GradeTooLowException
-    } catch (std::exception& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
-    }
-    std::cout << std::endl;
     
     return 0;
 }
