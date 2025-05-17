@@ -51,7 +51,7 @@ AForm* Intern::makeForm(std::string const &name, std::string const &target)
         if (forms[i].name == name)
         {
             std::cout << "👦 Intern creates " << name << std::endl;
-            return (this->*forms[i].createform)(target);
+            return (this->*(forms[i].createform))(target);
         }
     }
     throw FormNotFoundException();
