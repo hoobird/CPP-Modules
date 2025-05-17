@@ -2,7 +2,7 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -MMD
 VFLAG = -std=c++98
 
-SRC = main.cpp
+SRC = main.cpp ScalarConverter.cpp 
 OBJ = $(SRC:.cpp=.o)
 DEP = $(OBJ:.o=.d)
 NAME = scalar
