@@ -2,21 +2,25 @@
 #define SCALARCONVERTER_HPP
 
 #include <string>
+#include <iostream>
 
 class ScalarConverter 
 {
     public:
-        static void convert(const std::string& literal);
+        static void convert(std::string const &literal);
 
     private:
-        ScalarConverter();  // Private constructor to prevent instantiation
-        ScalarConverter(const ScalarConverter&);
-        ScalarConverter& operator=(const ScalarConverter&);
+        // OCF but privated so cannot be instantiated
+        ScalarConverter();
+        ScalarConverter(ScalarConverter const &other);
+        ScalarConverter& operator=(ScalarConverter const &other);
+        ~ScalarConverter();
 
-        static bool isChar(const std::string& literal);
-        static bool isInt(const std::string& literal);
-        static bool isFloat(const std::string& literal);
-        static bool isDouble(const std::string& literal);
+        // returns NULL if cannot convert, meaning i have to memory manage also
+        static char *toPrintableChar(std::string const &literal);
+        static int *toInt(std::string const &literal);
+        static float *toFloat(std::string const &literal);
+        static double *toDouble(std::string const &literal);
 };
 
 #endif
