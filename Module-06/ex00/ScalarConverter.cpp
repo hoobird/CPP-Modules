@@ -55,7 +55,7 @@ char *ScalarConverter::toPrintableChar(std::string const &literal)
 
 int *ScalarConverter::toInt(std::string const &literal)
 {
-    return NULL;
+    if (literal.empty() && )
 }
 
 float *ScalarConverter::toFloat(std::string const &literal)
