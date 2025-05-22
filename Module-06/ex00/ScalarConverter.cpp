@@ -26,44 +26,35 @@ ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convert(std::string const &literal)
 {
-    char *c = toPrintableChar(literal);
-    if (c) {
-        std::cout << "char: '" << *c << "'" << std::endl;
-        delete c;
-    }
+    // get literal in largest type (double)
+    double d = std::atof(literal.c_str());
+
+    // check char
+    std::cout << "char: ";
+    if (d < 0 || d > 255 || std::isnan(d))
+        std::cout << "impossible" << std::endl;
+    // else if (std::isprint(static_cast<char>(d)) == false)
+    //     std::cout << "Non displayable" << std::endl;
     else
-        std::cout << "char: Not displayable" << std::endl;
+        std::cout << "'" << static_cast<char>(d) << "'" << std::endl;
 
-    int *i = toInt(literal);
-    if (i) {
-        std::cout << "int: " << *i << std::endl;
-        delete i;
-    }
+    // check int
+    std::cout << "int: ";
+    if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max() || std::isnan(d))
+        std::cout << "impossible" << std::endl;
     else
-        std::cout << "int: impossible" << std::endl;
-    
+        std::cout << static_cast<int>(d) << std::endl;
+
+    // check double
+    std::cout << "double: ";
+    if (d == std::numeric_limits<double>::infinity())
+        std::cout << "+inf" << std::endl;
+    else if (d == -std::numeric_limits<double>::infinity())
+        std::cout << "-inf" << std::endl;
+    else if (std::isnan(d))
+        std::cout << "nan" << std::endl;
+    else
+        std::cout << d << std::endl;
+
 }
 
-// privated helpers
-
-char *ScalarConverter::toPrintableChar(std::string const &literal)
-{
-    if (literal.length() == 1 && std::isprint(literal[0]))
-        return new char(literal[0]);
-    return NULL;
-}
-
-int *ScalarConverter::toInt(std::string const &literal)
-{
-    if (literal.empty() && )
-}
-
-float *ScalarConverter::toFloat(std::string const &literal)
-{
-    return NULL;
-}
-
-double *ScalarConverter::toDouble(std::string const &literal)
-{
-    return NULL;
-}

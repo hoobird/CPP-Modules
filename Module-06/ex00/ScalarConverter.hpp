@@ -3,6 +3,10 @@
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
+#include <cmath>
+#include <limits>
+
 
 class ScalarConverter 
 {
@@ -16,11 +20,6 @@ class ScalarConverter
         ScalarConverter& operator=(ScalarConverter const &other);
         ~ScalarConverter();
 
-        // returns NULL if cannot convert, meaning i have to memory manage also
-        static char *toPrintableChar(std::string const &literal);
-        static int *toInt(std::string const &literal);
-        static float *toFloat(std::string const &literal);
-        static double *toDouble(std::string const &literal);
 };
 
 #endif
