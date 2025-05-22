@@ -45,6 +45,17 @@ void ScalarConverter::convert(std::string const &literal)
     else
         std::cout << static_cast<int>(d) << std::endl;
 
+    // check float
+    std::cout << "float: ";
+    if (d == std::numeric_limits<float>::infinity())
+        std::cout << "+inff" << std::endl;
+    else if (d == -std::numeric_limits<float>::infinity())
+        std::cout << "-inff" << std::endl;
+    else if (std::isnan(d))
+        std::cout << "nanf" << std::endl;
+    else
+        std::cout << static_cast<float>(d) << "f" << std::endl;
+
     // check double
     std::cout << "double: ";
     if (d == std::numeric_limits<double>::infinity())
