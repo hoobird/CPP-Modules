@@ -31,10 +31,10 @@ void ScalarConverter::convert(std::string const &literal)
 
     // check char
     std::cout << "char: ";
-    if (d < 0 || d > 255 || std::isnan(d))
+    if (d == 0)
         std::cout << "impossible" << std::endl;
-    // else if (std::isprint(static_cast<char>(d)) == false)
-    //     std::cout << "Non displayable" << std::endl;
+    else if (std::isprint(static_cast<char>(d)) == false)
+        std::cout << "Non displayable" << std::endl;
     else
         std::cout << "'" << static_cast<char>(d) << "'" << std::endl;
 
@@ -47,7 +47,9 @@ void ScalarConverter::convert(std::string const &literal)
 
     // check float
     std::cout << "float: ";
-    if (d == std::numeric_limits<float>::infinity())
+    if (d < -std::numeric_limits<float>::max() || d > std::numeric_limits<float>::max())
+        std::cout << "impossible" << std::endl;
+    else if (d == std::numeric_limits<float>::infinity())
         std::cout << "+inff" << std::endl;
     else if (d == -std::numeric_limits<float>::infinity())
         std::cout << "-inff" << std::endl;
