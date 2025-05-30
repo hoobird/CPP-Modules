@@ -26,26 +26,137 @@ ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convert(std::string const &literal)
 {
-    char *c = NULL;
-    int *i = NULL;
-    float *f = NULL;
-    double *d = NULL;
+    char c;
+    int i;
+    float f;
+    double d;
 
     types type = getType(literal);
-
+    std::cout << "Type: ";
+    if (type == CHAR)
+        std::cout << "char" << std::endl;
+    else if (type == INT)
+        std::cout << "int" << std::endl;
+    else if (type == FLOAT)
+        std::cout << "float" << std::endl;
+    else if (type == DOUBLE)
+        std::cout << "double" << std::endl;
+    else
+        std::cout << "impossible" << std::endl;
 
     if (type == CHAR)
     {
         c = literal[0];
-        i 
+        i = static_cast<int>(c);
+        f = static_cast<float>(c);
+        d = static_cast<double>(c);
+        if (std::isprint(static_cast<unsigned char>(c))) {
+            std::cout << "char: '" << c << "'" << std::endl;
+        } else {
+            std::cout << "char: Non displayable" << std::endl;
+        }
+        std::cout << "int: " << i << std::endl;
+        std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+        std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
     else if (type == INT)
     {
         i = std::atoi(literal.c_str());
+        f = static_cast<float>(i);
+        d = static_cast<double>(i);
+        if (i < std::numeric_limits<char>::min() || i > std::numeric_limits<char>::max()) {
+            std::cout << "char: Impossible" << std::endl;
+        } else {
+            c = static_cast<char>(i);
+            if (!std::isprint(static_cast<unsigned char>(c))) {
+                std::cout << "char: Non displayable" << std::endl;
+            } else {
+                std::cout << "char: '" << c << "'" << std::endl;
+            }
+        }
+        std::cout << "int: " << i << std::endl;
+        std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+        std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
-    else if (type == FLOAT || type == DOUBLE)
+    else if (type == FLOAT)
     {
-        f = std::atof(literal.c_str());
+        d = std::atof(literal.c_str());
+        f = static_cast<float>(d);
+        d = static_cast<double>(f);
+        if (literal == "nanf") {
+            std::cout << "char: impossible" << std::endl;
+            std::cout << "int: impossible" << std::endl;
+            std::cout << "float: nanf" << std::endl;
+            std::cout << "double: nan" << std::endl;
+            return;
+        }
+        //handle smaller char and int first
+        if (literal == "+inff" || literal == "-inff" || literal == "inff") {
+            std::cout << "char: impossible" << std::endl;
+            std::cout << "int: impossible" << std::endl;
+        } else {
+            if (f < std::numeric_limits<char>::min() || f > std::numeric_limits<char>::max()) {
+                std::cout << "char: Impossible" << std::endl;
+            } else {
+                c = static_cast<char>(f);
+                if (!std::isprint(static_cast<unsigned char>(f))) {
+                    std::cout << "char: Non displayable" << std::endl;
+                } else {
+                    std::cout << "char: '" << c << "'" << std::endl;
+                }
+            }
+            if (f < std::numeric_limits<int>::min() || f > std::numeric_limits<int>::max()) {
+                std::cout << "int: Impossible" << std::endl;
+            } else {
+                i = static_cast<int>(f);
+                std::cout << "int: " << i << std::endl;
+            }
+        }
+        std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+        std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
+    }
+    else if (type == DOUBLE)
+    {
+        d = std::atof(literal.c_str());
+        if (literal == "nan") {
+            std::cout << "char: impossible" << std::endl;
+            std::cout << "int: impossible" << std::endl;
+            std::cout << "float: nanf" << std::endl;
+            std::cout << "double: nan" << std::endl;
+            return;
+        }
+        //handle smaller char and int and float
+        if (literal == "+inf" || literal == "-inf" || literal == "inf") {
+            std::cout << "char: impossible" << std::endl;
+            std::cout << "int: impossible" << std::endl;
+        } else {
+            if (d < std::numeric_limits<char>::min() || d > std::numeric_limits<char>::max()) {
+                std::cout << "char: Impossible" << std::endl;
+            } else {
+                c = static_cast<char>(d);
+                if (!std::isprint(static_cast<unsigned char>(c))) {
+                    std::cout << "char: Non displayable" << std::endl;
+                } else {
+                    std::cout << "char: '" << c << "'" << std::endl;
+                }
+            }
+            if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max()) {
+                std::cout << "int: Impossible" << std::endl;
+            } else {
+                i = static_cast<int>(d);
+                std::cout << "int: " << i << std::endl;
+            }
+        }
+        if (std::isinf(d)) {
+            std::cout << "float: " << (d > 0 ? "inff" : "-inff") << std::endl;
+        }
+        else if (d < std::numeric_limits<float>::min() || d > std::numeric_limits<float>::max()) {
+            std::cout << "float: Impossible" << std::endl;
+        } else {
+            f = static_cast<float>(d);
+            std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+        }
+        std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
     }
     else {
         std::cout << "char: impossible" << std::endl;
@@ -54,41 +165,6 @@ void ScalarConverter::convert(std::string const &literal)
         std::cout << "double: impossible" << std::endl;
         return;
     }
-
-    // get literal in largest type (double)
-    // double d = std::atof(literal.c_str());
-
-    // check char
-    // std::cout << "char: ";
-    // if (type == CHAR)
-    // {
-    //     if (std::isprint(static_cast<unsigned char>(d))) {
-    //         std::cout << "'" << static_cast<char>(d) << "'" << std::endl;
-    //     }
-    //     else {
-    //         std::cout << "Non displayable" << std::endl;
-    //     }
-    // } else if (type == INT && literal.length() == 1 && std::isdigit(literal[0])) {
-    //     std::cout << "'" << static_cast<char>(d) << "'" << std::endl;
-    // }
-    // else {
-    //     std::cout << "impossible" << std::endl;
-    // }
-    
-    // // check int
-    // std::cout << "int: ";
-    // if (type == IMPOSSIBLE)
-    //     std::cout << "impossible" << std::endl;
-    
-    // // check float
-    // std::cout << "float: ";
-    // if (type == IMPOSSIBLE)
-    //     std::cout << "impossible" << std::endl;
-    
-    // // check double
-    // std::cout << "double: ";
-    // if (type == IMPOSSIBLE)
-    //     std::cout << "impossible" << std::endl;
 }
 
 ScalarConverter::types getType(std::string const &literal)
