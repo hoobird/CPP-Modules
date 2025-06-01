@@ -32,7 +32,7 @@ void ScalarConverter::convert(std::string const &literal)
     double d;
 
     types type = getType(literal);
-    std::cout << "Type: ";
+    std::cout << "Detected Type: ";
     if (type == CHAR)
         std::cout << "char" << std::endl;
     else if (type == INT)
@@ -150,7 +150,7 @@ void ScalarConverter::convert(std::string const &literal)
         if (std::isinf(d)) {
             std::cout << "float: " << (d > 0 ? "inff" : "-inff") << std::endl;
         }
-        else if (d < std::numeric_limits<float>::min() || d > std::numeric_limits<float>::max()) {
+        else if (d < -std::numeric_limits<float>::max() || d > std::numeric_limits<float>::max()) {
             std::cout << "float: Impossible" << std::endl;
         } else {
             f = static_cast<float>(d);
@@ -205,7 +205,7 @@ bool isFloat(const std::string& str) {
     if (endptr == str.c_str() || *endptr != 'f' || *(endptr + 1) != '\0' || errno == ERANGE)
         return false;
     
-    if (val < std::numeric_limits<float>::min() || val > std::numeric_limits<float>::max())
+    if (val < -std::numeric_limits<float>::max() || val > std::numeric_limits<float>::max())
         return false;
 
     return true;
@@ -222,7 +222,7 @@ bool isDouble(const std::string& str) {
     if (endptr == str.c_str() || *endptr != '\0' || errno == ERANGE)
         return false;
 
-    if (val < std::numeric_limits<double>::min() || val > std::numeric_limits<double>::max())
+    if (val < -std::numeric_limits<double>::max() || val > std::numeric_limits<double>::max())
         return false;
     return true;
 }
