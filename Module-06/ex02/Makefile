@@ -2,10 +2,10 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -MMD
 VFLAG = -std=c++98
 
-SRC = main.cpp
+SRC = Base.cpp A.cpp B.cpp C.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 DEP = $(OBJ:.o=.d)
-NAME = scalar
+NAME = identify
 
 all: $(NAME)
 
