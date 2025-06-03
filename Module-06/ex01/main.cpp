@@ -8,7 +8,7 @@ struct Data {
     std::string name; // after 4 bytes
     
     // Print function for verification
-    void print() const {
+    void toString() const {
         std::cout << "[Data] id: "<< id << ", name:  " << name << std::endl;
     }
 };
@@ -20,7 +20,7 @@ int main() {
     
     std::cout << "Original data address: " << data << std::endl;
     std::cout << "Original ";
-    data->print();
+    data->toString();
     
     // Serialize the pointer
     uintptr_t serialized = Serializer::serialize(data);
@@ -32,11 +32,11 @@ int main() {
     // Verify the deserialized pointer
     std::cout << "Deserialized data address: " << deserialized << std::endl;
     std::cout << "Deserialized ";
-    deserialized->print();
+    deserialized->toString();
     
     // Check if original and deserialized pointers is same
     std::cout << "\nPointer comparison: " 
-              << (data == deserialized ? "matchy matchy yay ✅" : "different gg.com ❌") 
+              << (data == deserialized ? "matchy matchy yay !!!" : "different gg.com :()") 
               << std::endl;
     
     delete data;
