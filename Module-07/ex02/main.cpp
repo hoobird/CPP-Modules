@@ -82,7 +82,7 @@ int main()
     
     // Test deep copy
     fruits[0] = "Avocado";
-    std::cout << "After modifying original - fruits[0]" << std::endl;
+    std::cout << "After modifying original" << std::endl;
     printArray(fruits, "Original");
     printArray(fruitsCopy, "Copy");
     
