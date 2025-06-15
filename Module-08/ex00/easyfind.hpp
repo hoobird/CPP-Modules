@@ -2,7 +2,6 @@
 #define EASYFIND_HPP
 
 #include <iostream>
-#include <iterator>
 
 // template <typename T, typename U = typename T::iterator>
 template <typename T>

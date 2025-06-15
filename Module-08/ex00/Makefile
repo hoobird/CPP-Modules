@@ -5,7 +5,7 @@ VFLAG = -std=c++98
 SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 DEP = $(OBJ:.o=.d)
-NAME = temp
+NAME = easyfind
 
 all: $(NAME)
 
