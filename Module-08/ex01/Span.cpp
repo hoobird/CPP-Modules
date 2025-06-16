@@ -73,8 +73,6 @@ int Span::longestSpan() const
     std::vector<int>::const_iterator end = this->numbers.end();
     int x = *it;
     int y = *(++it);
-    if (x > y)
-        std::swap(x, y);
     int maxspan = abs(y - x);
     it++;
     for (; it != end; ++it)
