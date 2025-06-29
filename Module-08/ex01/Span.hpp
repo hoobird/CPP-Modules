@@ -40,11 +40,21 @@ class Span {
                 }
         };
 
+        class SpanRangeInvalidException : public std::exception {
+            public:
+                const char* what() const throw() {
+                    return "Range is invalid";
+                }
+        };
+
         template <typename T>
         void addRange(T begin, T end) {
             // Returns the number of hops from first to last.
             if (std::distance(begin, end) + numbers.size() > N) {
                 throw SpanRangeTooLargeException();
+            }
+            if (std::distance(begin, end) <= 0) {
+                throw SpanRangeInvalidException();
             }
             numbers.insert(numbers.end(), begin, end);
         }

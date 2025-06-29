@@ -2,22 +2,17 @@
 #define EASYFIND_HPP
 
 #include <iostream>
+#include <algorithm>
 
 // template <typename T, typename U = typename T::iterator>
 template <typename T>
 void easyfind(T t, int i)
 {
-    typename T::iterator first = t.begin();
-    typename T::iterator last = t.end();
-    typename T::iterator it = first;
-    while (it != last)
+    typename T::iterator it = std::find(t.begin(), t.end(), i);
+    if (it != t.end())
     {
-        if (*it == i)
-        {
-            std::cout << "Found value: " << *it << std::endl;
-            return;
-        }
-        ++it;
+        std::cout << "Value found: " << *it << std::endl;
+        return;
     }
     std::cout << "Error: Value not found" << std::endl;
     return;
