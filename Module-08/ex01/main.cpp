@@ -93,13 +93,15 @@ int main()
         std::cout << e.what() << std::endl;
     }
     std::cout << "Remove first element in vector, 5 numbers left" << std::endl;
-    // vec.erase(vec.begin()); // Remove the first element to make it 5 numbers
+    vec.erase(vec.begin()); // Remove the first element to make it 5 numbers
     try {
+        std::cout << "Adding range of 5 numbers" << std::endl;
         sp5.addRange(vec.begin(), vec.end()); // should succeed
     } catch (const Span::SpanRangeTooLargeException &e) {
         std::cout << e.what() << std::endl;
     }
     try {
+        std::cout << "Adding range of 5 numbers again" << std::endl;
         sp5.addRange(vec.begin(), vec.end()); // should fail
     } catch (const Span::SpanRangeInvalidException &e) {
         std::cout << e.what() << std::endl;
