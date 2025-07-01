@@ -1,6 +1,5 @@
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -MMD
-VFLAG = -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 
 SRC = main.cpp Span.cpp
 OBJ = $(SRC:.cpp=.o)
@@ -10,10 +9,7 @@ NAME = span
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(VFLAG) $(OBJ) -o $(NAME)
-
-%.o: %.cpp
-	$(CC) $(CFLAGS) $(VFLAG) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(VFLAG) $(OBJ) -o $(NAME)
 
 clean:
 	rm -f $(OBJ) $(DEP)
