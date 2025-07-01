@@ -43,22 +43,12 @@ int Span::shortestSpan() const
     {
         throw SpanTooSmallException();
     }
-
-    std::vector<int>::const_iterator it = this->numbers.begin();
-    std::vector<int>::const_iterator end = this->numbers.end();
-    int x = *it;
-    int y = *(++it);
-    int minspan = abs(y - x);
-    it++;
-    for (; it != end; ++it)
-    {
-        x = y;
-        y = *it;
-        int diff = abs(y - x);
-        if (diff < minspan)
-            minspan = diff;
-    }
-    return minspan;
+    std::vector<int> sortedNumbers = this->numbers;
+    std::vector<int> differences(sortedNumbers.size());
+    std::sort(sortedNumbers.begin(), sortedNumbers.end());
+    std::adjacent_difference(sortedNumbers.begin(), sortedNumbers.end(), differences.begin());
+    int min = *std::min_element(differences.begin(), differences.end());
+    return min;
 }
 
 int Span::longestSpan() const
@@ -67,22 +57,8 @@ int Span::longestSpan() const
     {
         throw SpanTooSmallException();
     }
-
-    std::vector<int>::const_iterator it = this->numbers.begin();
-    std::vector<int>::const_iterator end = this->numbers.end();
-    int x = *it;
-    int y = *(++it);
-    int maxspan = abs(y - x);
-    it++;
-    for (; it != end; ++it)
-    {
-        x = y;
-        y = *it;
-        int diff = abs(y - x);
-        if (diff > maxspan)
-            maxspan = diff;
-    }
-    return maxspan;
+    int max = *std::max_element(this->numbers.begin(), this->numbers.end()) - *std::min_element(this->numbers.begin(), this->numbers.end());
+    return max;
 }
 
 std::ostream &operator<<(std::ostream &o, const Span &s)

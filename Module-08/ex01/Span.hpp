@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <numeric>
 
 class Span {
     public:
@@ -59,7 +60,7 @@ class Span {
             numbers.insert(numbers.end(), begin, end);
         }
         
-        private:
+    private:
         Span();
         unsigned int N;
         std::vector<int> numbers;
@@ -67,7 +68,7 @@ class Span {
         
 };
 
-std::ostream &operator<<(std::ostream &o, const Span &s);  
+std::ostream &operator<<(std::ostream &o, const Span &s);
 #endif
 
 // Refernence:
