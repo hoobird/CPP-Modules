@@ -5,8 +5,8 @@
 
 int main()
 {
-    // Normal Case
-    std::cout << "Normal Case" << std::endl;
+    // Given Case
+    std::cout << "Given Case" << std::endl;
     Span sp = Span(5);
     sp.addNumber(6);
     sp.addNumber(3);
@@ -17,6 +17,19 @@ int main()
     std::cout << "Longest Span: " << sp.longestSpan() << std::endl;
     std::cout << sp << std::endl;
 
+
+    // Normal Case
+    std::cout << "Normal Case" << std::endl;
+    Span sp1 = Span(6);
+    sp1.addNumber(23);
+    sp1.addNumber(3);
+    sp1.addNumber(33);
+    sp1.addNumber(55);
+    sp1.addNumber(4);
+    sp1.addNumber(11);
+    std::cout << "Shortest Span: " << sp1.shortestSpan() << std::endl;
+    std::cout << "Longest Span: " << sp1.longestSpan() << std::endl;
+    std::cout << sp1 << std::endl;
 
     std::cout << std::endl;
     // Exception Case: Span is already full
