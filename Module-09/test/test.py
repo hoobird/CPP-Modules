@@ -1,7 +1,7 @@
 import csv
 
 # Open the CSV file
-with open('data.csv', 'r', newline='') as csvfile:
+with open('datashort.csv', 'r', newline='') as csvfile:
     # Create a csv.reader object
     reader = csv.reader(csvfile)
 
