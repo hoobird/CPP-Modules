@@ -4,19 +4,29 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <Stack>
+#include <stack>
 
 class RPN {
     public:
-        RPN();
-        ~RPN();
-        void evaluate(const std::string &expression);
-        
+        static void evaluate(const std::string &exp);
+
+        class InvalidExpressionException : public std::exception {
+            public:
+                InvalidExpressionException(): reason("Error: Invalid expression") {}
+                InvalidExpressionException(const std::string &reason) : reason("Error: " + reason) {}
+                ~InvalidExpressionException() throw() {}
+                virtual const char *what() const throw() {
+                    return reason.c_str();
+                }
+            private:
+                std::string reason;
+        };
+    
     private:
-        std::vector<double> stack;  
-        void performOperation(const std::string &operation);
-        bool isOperator(const std::string &token);
-        void handleError(const std::string &message);
+        RPN();
+        RPN(const RPN &other);
+        RPN &operator=(const RPN &other);
+        ~RPN();
 };
 
 
