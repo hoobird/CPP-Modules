@@ -6,4 +6,6 @@ int main(int argc, char **argv) {
         std::cerr << "Error: No arguments provided." << std::endl;
         return 1;
     }
+ 
     
+}
