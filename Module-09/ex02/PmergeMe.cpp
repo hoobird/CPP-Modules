@@ -25,8 +25,22 @@ void PmergeMe::fjsort()
 
 std::ostream &PmergeMe::toStream(std::ostream &os) const
 {
-    for (std::vector<int>::const_iterator it = vdata.begin(); it != data.end(); ++it) {
+    for (std::vector<int>::const_iterator it = vdata.begin(); it != vdata.end(); ++it) {
         os << *it << " ";
     }
     return os;
+}
+
+void PmergeMe::makePairsandSort(unsigned int iteration)
+{
+    int groupsize = std::pow(2, iteration);
+    if (groupsize * 2 > vdata.size()) {
+        return;
+    }
+
+    std::vector<std::vector<int>> temp;
+    for (unsigned int i = 0; i < vdata.size(); ++i) {
+        if (i )
+    }
+
 }

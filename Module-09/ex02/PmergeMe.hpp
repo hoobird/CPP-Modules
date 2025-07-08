@@ -9,6 +9,7 @@
 #include <string>
 #include <cstdlib>
 #include <cerrno>
+#include <cmath>
 
 typedef enum {
     VECTOR,
@@ -28,6 +29,8 @@ class PmergeMe {
     private:
         PmergeMe();
         std::vector<int> vdata;
+
+        void makePairsandSort(unsigned int iteration);
 
         PmergeMe(const PmergeMe &other);
         PmergeMe &operator=(const PmergeMe &other);
