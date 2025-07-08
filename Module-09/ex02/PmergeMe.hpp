@@ -1,18 +1,33 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
-template <typename T>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+#include <sstream>
+#include <string>
+#include <cstdlib>
+#include <cerrno>
+
+typedef enum {
+    VECTOR,
+    DEQUE
+} containertype;
+
 class PmergeMe {
     public:
-        PmergeMe();
+        PmergeMe(int argc, char **argv, containertype type);
         ~PmergeMe();
 
         void fjsort();
     
+        std::ostream &toStream(std::ostream &os) const;
+    
+    
     private:
-        T *data;
-
-        void makePairs();
+        PmergeMe();
+        std::vector<int> vdata;
 
         PmergeMe(const PmergeMe &other);
         PmergeMe &operator=(const PmergeMe &other);

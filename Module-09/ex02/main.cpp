@@ -1,11 +1,33 @@
 #include "PmergeMe.hpp"
-#include <iostream>
+
+
+bool checkPositiveIntegerSequence(int argc, char **argv);
+
+
 
 int main(int argc, char **argv) {
     if (argc < 2) {
         std::cerr << "Error: No arguments provided." << std::endl;
         return 1;
     }
- 
+
+    if (!checkPositiveIntegerSequence(argc, argv)) {
+        return 2;
+    }
+
+    PmergeMe pmergeMe(argc, argv);
     
+
+}
+
+bool checkPositiveIntegerSequence(int argc, char **argv) {
+    for (int i = 1; i < argc; ++i) {
+        errno = 0;
+        char *endptr;
+        long value = strtol(argv[i], &endptr, 10);
+        if (*endptr != '\0' || value <= 0) {
+            std::cerr << "Error: Argument " << i << " is not a positive integer." << std::endl;
+            return false;
+        }
+    }
 }
