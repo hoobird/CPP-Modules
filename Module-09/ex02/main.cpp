@@ -15,9 +15,12 @@ int main(int argc, char **argv) {
         return 2;
     }
 
-    PmergeMe pmergeMe(argc, argv);
+    PmergeMe pmergeMe(argc, argv, VECTOR);
+    std::cout << "Initial sequence: " << pmergeMe.toString() << std::endl;
+    pmergeMe.fjsort();
+    std::cout << "Sorted sequence: " << pmergeMe.toString() << std::endl;
     
-
+    return 0;
 }
 
 bool checkPositiveIntegerSequence(int argc, char **argv) {
@@ -30,4 +33,5 @@ bool checkPositiveIntegerSequence(int argc, char **argv) {
             return false;
         }
     }
+    return true;
 }
