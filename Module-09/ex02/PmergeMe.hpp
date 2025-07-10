@@ -27,8 +27,8 @@ class PmergeMe {
         
         void makePairsandSort(unsigned int iteration);
 
-        unsigned int getJacobNo(unsigned int i);        
-        
+        unsigned int getJacobNo(unsigned int i);
+
         PmergeMe();
         PmergeMe(const PmergeMe &other);
         PmergeMe &operator=(const PmergeMe &other);
@@ -37,7 +37,6 @@ class PmergeMe {
             bool    isMain;
             unsigned int     number;
             std::vector<int> subvec;
-            
             sSubGroup(bool isMain, unsigned int number, std::vector<int> subvec);
         } SubGroup;
         

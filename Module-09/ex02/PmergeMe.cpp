@@ -103,14 +103,33 @@ void PmergeMe::makePairsandSort(unsigned int iteration)
     counter = 0;
     for (std::vector< std::vector<int> >::iterator it2 = temp.begin(); it2 != temp.end(); ++it2) {
         if (counter % 2 == 0) {
-            pend.push_back(SubGroup(false, counter / 2, *it2));
+            pend.push_back(SubGroup(false, counter / 2 + 1, *it2));
         }
         else {
-            pend.push_back(SubGroup(true, counter / 2, *it2));
+            main.push_back(SubGroup(true, counter / 2 + 1, *it2));
         }
     }
-    counter = 0;
-    int jacob = getJacobNo(counter);
+    main.insert(main.begin(), *pend.begin());
+    pend.erase(pend.begin());
+    // skip 1 of jacob 
+    counter = 1;
+    unsigned int previousJacob = 1;
+    unsigned int jacob = getJacobNo(counter);
+    unsigned int largestpendnumber = pend.size() - 1;
+    while (pend.size() > 0) {
+        // use lower bound to find the first element in main that is larger than the last element of pend
+        for (unsigned int i = jacob; i > previousJacob; --i) {
+            if (i > largestpendnumber) {
+                continue;
+            }
+            std::vector<SubGroup>::iterator it2 = std::lower_bound(main.begin(), main.end(), pend[i], 
+                [this](const SubGroup &a, const SubGroup &b) {
+                    return a.subvec.back() < b.subvec.back();
+                });
+        }
+    }
+        
+
 
 }
 
