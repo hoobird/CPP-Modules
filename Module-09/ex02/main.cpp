@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
         return 2;
     }
 
-    PmergeMe pmergeMe(argc, argv, VECTOR);
+    PmergeMe pmergeMe(argc, argv);
     std::cout << "Initial sequence: " << pmergeMe.toString() << std::endl;
     pmergeMe.fjsort();
     std::cout << "Sorted sequence: " << pmergeMe.toString() << std::endl;

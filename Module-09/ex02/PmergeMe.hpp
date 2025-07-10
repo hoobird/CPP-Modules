@@ -22,9 +22,10 @@ class PmergeMe {
     
     
     private:
+
         unsigned int comparisons;
         std::vector<int> vdata;
-        
+
         void makePairsandSort(unsigned int iteration);
 
         unsigned int getJacobNo(unsigned int i);
@@ -34,13 +35,12 @@ class PmergeMe {
         PmergeMe &operator=(const PmergeMe &other);
 
         typedef struct sSubGroup {
-            bool    isMain;
-            unsigned int     number;
+            std::string tag;  // "a1" or "b1"
             std::vector<int> subvec;
-            sSubGroup(bool isMain, unsigned int number, std::vector<int> subvec);
-        } SubGroup;
-        
-        bool matchSubGroup(const SubGroup& sg, bool isMain, unsigned int number);
+
+            sSubGroup() : tag(""), subvec() {}
+            sSubGroup(const std::string &t, const std::vector<int> &v);
+        } SubGroup
 };
 
 #endif

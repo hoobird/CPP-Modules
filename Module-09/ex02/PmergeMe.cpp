@@ -14,15 +14,6 @@ PmergeMe::~PmergeMe()
 {
 }
 
-PmergeMe::sSubGroup::sSubGroup(bool isMain, unsigned int number, std::vector<int> subvec)
-    : isMain(isMain), number(number), subvec(subvec) {}
-
-bool PmergeMe::matchSubGroup(const SubGroup &sg, bool isMain, unsigned int number)
-{
-    return sg.isMain == isMain && sg.number == number;
-}
-
-
 void PmergeMe::fjsort()
 {
     if (vdata.size() < 2) {
@@ -97,40 +88,19 @@ void PmergeMe::makePairsandSort(unsigned int iteration)
     std::cout << "Iteration " << iteration << ": " << toString() << std::endl;
     makePairsandSort(iteration + 1);
     
+    std::cout << "\n\nAfter makePairsandSort, iteration " << iteration << ": " << toString() << std::endl;
+    
     // Steps 2 and 3: the initialization and insertion
-    std::vector<SubGroup> main;
-    std::vector<SubGroup> pend;
-    counter = 0;
-    for (std::vector< std::vector<int> >::iterator it2 = temp.begin(); it2 != temp.end(); ++it2) {
-        if (counter % 2 == 0) {
-            pend.push_back(SubGroup(false, counter / 2 + 1, *it2));
-        }
-        else {
-            main.push_back(SubGroup(true, counter / 2 + 1, *it2));
-        }
-    }
-    main.insert(main.begin(), *pend.begin());
-    pend.erase(pend.begin());
-    // skip 1 of jacob 
-    counter = 1;
-    unsigned int previousJacob = 1;
-    unsigned int jacob = getJacobNo(counter);
-    unsigned int largestpendnumber = pend.size() - 1;
-    while (pend.size() > 0) {
-        // use lower bound to find the first element in main that is larger than the last element of pend
-        for (unsigned int i = jacob; i > previousJacob; --i) {
-            if (i > largestpendnumber) {
-                continue;
-            }
-            std::vector<SubGroup>::iterator it2 = std::lower_bound(main.begin(), main.end(), pend[i], 
-                [this](const SubGroup &a, const SubGroup &b) {
-                    return a.subvec.back() < b.subvec.back();
-                });
-        }
-    }
-        
+    std::vector<SubGroup> mainchain;
+    std::vector<SubGroup> pendchain;
+    SubGroup oddone;
 
+    unsigned int subgroupNo = 1;
+    if (vdata.size() % 2 == 1 && vdata.size() > 2) {
+        mainchain
+    }
 
+    // update main vector again
 }
 
 unsigned int PmergeMe::getJacobNo(unsigned int i)
@@ -141,3 +111,5 @@ unsigned int PmergeMe::getJacobNo(unsigned int i)
         return 1;
     return getJacobNo(i - 1) + 2 * getJacobNo(i - 2);
 }
+
+PmergeMe::sSubGroup::sSubGroup(const std::string &t, const std::vector<int> &v) {}
