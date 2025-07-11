@@ -34,13 +34,14 @@ class PmergeMe {
         PmergeMe(const PmergeMe &other);
         PmergeMe &operator=(const PmergeMe &other);
 
-        typedef struct sSubGroup {
-            std::string tag;  // "a1" or "b1"
-            std::vector<int> subvec;
-
-            sSubGroup() : tag(""), subvec() {}
-            sSubGroup(const std::string &t, const std::vector<int> &v);
-        } SubGroup
+        class SubGroup {
+            public:
+                SubGroup(char tagab, int tag12, const std::vector<int> &v);
+                char tagab;
+                int tag12;
+                int lastnum;
+                std::vector<int> subvec;
+        };
 };
 
 #endif
