@@ -1,5 +1,5 @@
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -MMD -std=c++98 -g
+CXXFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 
 SRC = main.cpp PmergeMe.cpp
 OBJ = $(SRC:.cpp=.o)
@@ -7,6 +7,9 @@ DEP = $(OBJ:.o=.d)
 NAME = PmergeMe
 
 all: $(NAME)
+
+debug: CXXFLAGS += -g -DDEBUG
+debug: clean all
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(VFLAG) $(OBJ) -o $(NAME)
