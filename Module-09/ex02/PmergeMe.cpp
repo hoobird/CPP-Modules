@@ -96,7 +96,7 @@ void PmergeMe::makePairsandSort(unsigned int iteration)
     }
     // std::cout << "Iteration " << iteration << ": " << toString() << std::endl;
     makePairsandSort(iteration + 1);
-    std::cout << "AFTER number of comparisons: " << comparisons << std::endl;
+    // std::cout << "AFTER number of comparisons: " << comparisons << std::endl;
     
     // std::cout << "\n\nAfter makePairsandSort\niteration " << iteration << ": " << toString() << std::endl;
 
