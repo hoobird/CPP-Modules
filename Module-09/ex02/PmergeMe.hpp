@@ -83,7 +83,7 @@ class PmergeMeDeque {
     
         static unsigned int comparisons;
     
-        std::deque<int> vdata;
+        std::deque<int> ddata;
     private:
         class SubGroup {
             public:
@@ -119,6 +119,57 @@ class PmergeMeDeque {
 // Helper functions for printing
 void    printDDint(std::deque< std::deque<int> > v1);
 std::string highlightlastnum(std::deque<int> v);
+
+#ifdef BONUS
+#include <list>
+class PmergeMeList {
+    public:
+        PmergeMeList(std::list<int> inputData);
+        ~PmergeMeList();
+
+        void fjsort();
     
+        std::string toString() const;
+    
+        static unsigned int comparisons;
+    
+        std::list<int> ldata;
+    private:
+        class SubGroup {
+            public:
+            static unsigned int &comparisons;
+            SubGroup();
+            SubGroup(const SubGroup &other);
+            SubGroup &operator=(const SubGroup &other);
+            SubGroup(std::string tag, const std::list<int> &v);
+            SubGroup(std::string tag); // for comparison purposes
+            ~SubGroup();
+            bool operator==(const SubGroup &other) const;
+            bool operator<(const SubGroup &other) const;
+            std::string tag;
+            int lastnum;
+            std::list<int> sublist;
+            std::string toStringsg() const;
+        };
+        
+        void fordJohnsonSort(unsigned int iteration);
+        std::list< std::list<int> > groupList(const std::list<int> &other, unsigned int groupsize);
+        void pairAndSortGroups(std::list<std::list<int> > &temp, unsigned int groupsize);
+        void labelSubGroups(std::list<std::list<int> > &temp, std::list<SubGroup> &mainchain, std::list<SubGroup> &pendchain);
+        void insertFromPendChain(std::list<SubGroup> &mainchain, std::list<SubGroup> &pendchain);
+
+        unsigned int getJacobNo(unsigned int i);
+        
+        PmergeMeList();
+        PmergeMeList(const PmergeMeList &other);
+        PmergeMeList &operator=(const PmergeMeList &other);
+        
+};
+
+// Helper functions for printing
+void    printLLint(std::list< std::list<int> > v1);
+std::string highlightlastnum(std::list<int> v);
+
 #endif
-    
+
+#endif

@@ -50,3 +50,32 @@ std::string highlightlastnum(std::deque<int> v) {
     ss << "(" << v.back() << ") ]" ;
     return ss.str();
 }
+
+#ifdef BONUS
+void printLLint(std::list< std::list<int> > v1) {
+    for (std::list< std::list<int> >::iterator it = v1.begin(); it != v1.end(); ++it) {
+        std::cout << "[ ";
+        for (std::list<int>::iterator it2 = it->begin(); it2 != it->end(); ++it2) {
+            std::cout << *it2 << " ";
+        }
+        std::cout << "] ";
+    }
+    std::cout << std::endl;
+}
+
+std::string highlightlastnum(std::list<int> v) {
+    std::stringstream ss;
+    if (v.empty()) {
+        return "";
+    }
+    ss << "[ ";
+    std::list<int>::const_iterator it = v.begin();
+    std::list<int>::const_iterator last = v.end();
+    --last;
+    for (; it != last; ++it) {
+        ss << *it << " ";
+    }
+    ss << "(" << *last << ") ]";
+    return ss.str();
+}
+#endif

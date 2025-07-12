@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 
 PmergeMeDeque::PmergeMeDeque(std::deque<int> inputData)
-: vdata(inputData) {}
+: ddata(inputData) {}
 
 PmergeMeDeque::~PmergeMeDeque()
 {
@@ -9,7 +9,7 @@ PmergeMeDeque::~PmergeMeDeque()
 
 void PmergeMeDeque::fjsort()
 {
-    if (vdata.size() < 2) {
+    if (ddata.size() < 2) {
         return;
     }
     fordJohnsonSort(0);
@@ -20,7 +20,7 @@ std::string PmergeMeDeque::toString() const
     std::stringstream ss;
     std::string result;
 
-    for (std::deque<int>::const_iterator it = vdata.begin(); it != vdata.end(); ++it) {
+    for (std::deque<int>::const_iterator it = ddata.begin(); it != ddata.end(); ++it) {
         ss << *it << " ";
     }
     result = ss.str();
@@ -126,7 +126,7 @@ void PmergeMeDeque::fordJohnsonSort(unsigned int iteration)
     DEBUG_PRINT(debugss.str());
     debugss.str("");
 
-    if (groupsize * 2 > vdata.size()) {
+    if (groupsize * 2 > ddata.size()) {
         debugss << "With group size " << groupsize << ", unable to make pairs\nBase case reached, returning.\n";
         debugss << "\n---------------------------------------------\n";
         DEBUG_PRINT(debugss.str());
@@ -135,16 +135,16 @@ void PmergeMeDeque::fordJohnsonSort(unsigned int iteration)
     }
     
 
-    std::deque< std::deque<int> > temp = groupDeque(vdata, groupsize);
+    std::deque< std::deque<int> > temp = groupDeque(ddata, groupsize);
     DEBUG_CALL(printDDint(temp));
 
     pairAndSortGroups(temp, groupsize);
 
     // unpack the sorted groups back to vdata
-    vdata.clear();
+    ddata.clear();
     for (std::deque< std::deque<int> >::iterator it2 = temp.begin(); it2 != temp.end(); ++it2) {
         for (std::deque<int>::iterator it3 = it2->begin(); it3 != it2->end(); ++it3) {
-            vdata.push_back(*it3);
+            ddata.push_back(*it3);
         }
     }
     debugss << "After pairing and sorting groups: " << toString() << "\n";
@@ -165,7 +165,7 @@ void PmergeMeDeque::fordJohnsonSort(unsigned int iteration)
 
 
     // 2.0 Partitioning
-    std::deque<int> copy = vdata; 
+    std::deque<int> copy = ddata; 
     std::deque<int> nonpart;
     unsigned int nonpartsize = copy.size() % (groupsize);
     
@@ -215,14 +215,14 @@ void PmergeMeDeque::fordJohnsonSort(unsigned int iteration)
     debugss.str("");
 
     // 4. convert mainchain to vdata
-    vdata.clear();
+    ddata.clear();
     for (std::deque<SubGroup>::iterator it = mainchain.begin(); it != mainchain.end(); ++it) {
         for (std::deque<int>::iterator it2 = it->subdeq.begin(); it2 != it->subdeq.end(); ++it2) {
-            vdata.push_back(*it2);
+            ddata.push_back(*it2);
         }
     }
     if (!nonpart.empty()) {
-        vdata.insert(vdata.end(), nonpart.begin(), nonpart.end());
+        ddata.insert(ddata.end(), nonpart.begin(), nonpart.end());
     }
 
     debugss << "End of iteration " << iteration << " sorting: " << toString() << "\n";
