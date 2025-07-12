@@ -1,5 +1,5 @@
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -MMD -std=c++98 -g
+CXXFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 
 SRC = main.cpp PmergeMe.cpp PmergeMeVector.cpp PmergeMeDeque.cpp
 BONUS_SRC = $(SRC) PmergeMeList.cpp

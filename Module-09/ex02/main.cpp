@@ -48,9 +48,9 @@ int main(int argc, char **argv) {
         
         #ifdef BONUS
         std::cout << "Using std::vector:" << std::endl;
-        std::cout << "\tBefore: ";
-        printVint(inputDataVector);
-        std::cout << "\tAfter: " << pmergeMeVector.toString() << std::endl;
+        // std::cout << "\tBefore: ";
+        // printVint(inputDataVector);
+        // std::cout << "\tAfter: " << pmergeMeVector.toString() << std::endl;
         #endif
         std::sort(inputDataVector.begin(), inputDataVector.end()); // sort using std::sort for comparison
         if (inputDataVector != pmergeMeVector.vdata) {
@@ -85,9 +85,9 @@ int main(int argc, char **argv) {
         
         #ifdef BONUS
         std::cout << "Using std::deque:" << std::endl;
-        std::cout << "\tBefore: ";
-        printDint(inputDataDeque);
-        std::cout << "\tAfter: " << pmergeMeDeque.toString() << std::endl;
+        // std::cout << "\tBefore: ";
+        // printDint(inputDataDeque);
+        // std::cout << "\tAfter: " << pmergeMeDeque.toString() << std::endl;
         #endif
         std::sort(inputDataDeque.begin(), inputDataDeque.end()); // sort using std::sort for comparison
         if (inputDataDeque != pmergeMeDeque.ddata) {
@@ -121,9 +121,9 @@ int main(int argc, char **argv) {
         // end list-based FJ sorting
         
         std::cout << "Using std::list:" << std::endl;
-        std::cout << "\tBefore: ";
-        printLint(inputDataList);
-        std::cout << "\tAfter: " << pmergeMeList.toString() << std::endl;
+        // std::cout << "\tBefore: ";
+        // printLint(inputDataList);
+        // std::cout << "\tAfter: " << pmergeMeList.toString() << std::endl;
         inputDataList.sort();
         if (inputDataList != pmergeMeList.ldata) {
             // this one come out means gg liao
