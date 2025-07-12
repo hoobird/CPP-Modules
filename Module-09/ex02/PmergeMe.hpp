@@ -24,10 +24,10 @@
     #define DEBUG_CALL(x)
 #endif
 
-class PmergeMe {
+class PmergeMeVector {
     public:
-        PmergeMe(std::vector<int> inputData);
-        ~PmergeMe();
+        PmergeMeVector(std::vector<int> inputData);
+        ~PmergeMeVector();
 
         void fjsort();
     
@@ -62,16 +62,63 @@ class PmergeMe {
 
         unsigned int getJacobNo(unsigned int i);
         
-        PmergeMe();
-        PmergeMe(const PmergeMe &other);
-        PmergeMe &operator=(const PmergeMe &other);
+        PmergeMeVector();
+        PmergeMeVector(const PmergeMeVector &other);
+        PmergeMeVector &operator=(const PmergeMeVector &other);
         
 };
 
 // Helper functions for printing
 void    printVVint(std::vector< std::vector<int> > v1);
-void    printVint(std::vector<int> v1);
 std::string highlightlastnum(std::vector<int> v);
+
+class PmergeMeDeque {
+    public:
+        PmergeMeDeque(std::deque<int> inputData);
+        ~PmergeMeDeque();
+
+        void fjsort();
+    
+        std::string toString() const;
+    
+        static unsigned int comparisons;
+    
+        std::deque<int> vdata;
+    private:
+        class SubGroup {
+            public:
+            static unsigned int &comparisons;
+            SubGroup();
+            SubGroup(const SubGroup &other);
+            SubGroup &operator=(const SubGroup &other);
+            SubGroup(std::string tag, const std::deque<int> &v);
+            SubGroup(std::string tag); // for comparison purposes
+            ~SubGroup();
+            bool operator==(const SubGroup &other) const;
+            bool operator<(const SubGroup &other) const;
+            std::string tag;
+            int lastnum;
+            std::deque<int> subdeq;
+            std::string toStringsg() const;
+        };
+        
+        void fordJohnsonSort(unsigned int iteration);
+        std::deque< std::deque<int> > groupDeque(const std::deque<int> &other, unsigned int groupsize);
+        void pairAndSortGroups(std::deque<std::deque<int> > &temp, unsigned int groupsize);
+        void labelSubGroups(std::deque<std::deque<int> > &temp, std::deque<SubGroup> &mainchain, std::deque<SubGroup> &pendchain);
+        void insertFromPendChain(std::deque<SubGroup> &mainchain, std::deque<SubGroup> &pendchain);
+
+        unsigned int getJacobNo(unsigned int i);
+        
+        PmergeMeDeque();
+        PmergeMeDeque(const PmergeMeDeque &other);
+        PmergeMeDeque &operator=(const PmergeMeDeque &other);
+        
+};
+
+// Helper functions for printing
+void    printDDint(std::deque< std::deque<int> > v1);
+std::string highlightlastnum(std::deque<int> v);
     
 #endif
     

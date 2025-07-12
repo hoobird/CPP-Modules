@@ -4,6 +4,8 @@ bool checkPositiveIntegerSequence(int argc, char **argv);
 long getMaxFJComparisons(int n);
 std::vector<int> getInputDataVector(int argc, char **argv);
 std::deque<int> getInputDataDeque(int argc, char **argv);
+void    printVint(std::vector<int> v1);
+void    printDint(std::deque<int> v1);
 
 int main(int argc, char **argv) {
     if (argc < 2) {
@@ -15,35 +17,68 @@ int main(int argc, char **argv) {
         return 2;
     }
     
-    timeval start, end;
-    long seconds, useconds, total_useconds;
-    std::vector<int> inputData = getInputDataVector(argc, argv);
+    {
+        timeval start, end;
+        long seconds, useconds, total_useconds;
+        std::vector<int> inputDataVector = getInputDataVector(argc, argv);
+        
+        // start vector-based FJ sorting
+        std::cout << "Using std::vector:" << std::endl;
+        gettimeofday(&start, NULL);
+        PmergeMeVector pmergeMeVector(inputDataVector);;
+        // std::cout << "\tBefore: ";
+        // printVint(inputDataVector);
+        pmergeMeVector.fjsort();
+        // std::cout << "\tAfter: " << pmergeMeVector.toString() << std::endl;
+        gettimeofday(&end, NULL);
+        // end vector-based FJ sorting
     
-    // start vector-based FJ sorting
-    gettimeofday(&start, NULL);
-    PmergeMe pmergeMe(inputData);;
-    inputData = pmergeMe.vdata;
-    std::cout << "Before: " << pmergeMe.toString() << std::endl;
-    pmergeMe.fjsort();
-    std::cout << "After: " << pmergeMe.toString() << std::endl;
-    gettimeofday(&end, NULL);
-    // end vector-based FJ sorting
+        std::sort(inputDataVector.begin(), inputDataVector.end()); // sort using std::sort for comparison
+        if (inputDataVector != pmergeMeVector.vdata) {
+            // this one come out means gg liao
+            std::cerr << "Error(Vector): The sorted output does not match the expected result." << std::endl;
+            return 3;
+        }
+        seconds = end.tv_sec - start.tv_sec;
+        useconds = end.tv_usec - start.tv_usec;
+        total_useconds = seconds * 1000000 + useconds;
+        
+        std::cout << "\tNumber of comparisons: " << pmergeMeVector.comparisons << std::endl;
+        std::cout << "\tTime to process a range of " << argc - 1 << " elements: " 
+                << total_useconds << " us" << std::endl;
 
-    std::sort(inputData.begin(), inputData.end()); // sort using std::sort for comparison
-    if (inputData != pmergeMe.vdata) {
-        // this one come out means gg liao
-        std::cerr << "Error: The sorted output does not match the expected result." << std::endl;
-        return 3;
     }
 
-    seconds = end.tv_sec - start.tv_sec;
-    useconds = end.tv_usec - start.tv_usec;
-    total_useconds = seconds * 1000000 + useconds;
+    {
+        timeval start, end;
+        long seconds, useconds, total_useconds;
+        std::deque<int> inputDataDeque = getInputDataDeque(argc, argv);
+        
+        // start vector-based FJ sorting
+        std::cout << "Using std::deque:" << std::endl;
+        gettimeofday(&start, NULL);
+        PmergeMeDeque pmergeMeDeque(inputDataDeque);;
+        // std::cout << "\tBefore: ";
+        // printDint(inputDataDeque);
+        pmergeMeDeque.fjsort();
+        // std::cout << "\tAfter: " << pmergeMeDeque.toString() << std::endl;
+        gettimeofday(&end, NULL);
+        // end vector-based FJ sorting
     
-    std::cout << "Using std::vector:" << std::endl;
-    std::cout << "\tNumber of comparisons: " << pmergeMe.comparisons << std::endl;
-    std::cout << "\tTime to process a range of " << argc - 1 << " elements: " 
-              << total_useconds << " us" << std::endl;
+        std::sort(inputDataDeque.begin(), inputDataDeque.end()); // sort using std::sort for comparison
+        if (inputDataDeque != pmergeMeDeque.vdata) {
+            // this one come out means gg liao
+            std::cerr << "Error(Deque): The sorted output does not match the expected result." << std::endl;
+            return 3;
+        }
+        seconds = end.tv_sec - start.tv_sec;
+        useconds = end.tv_usec - start.tv_usec;
+        total_useconds = seconds * 1000000 + useconds;
+        
+        std::cout << "\tNumber of comparisons: " << pmergeMeDeque.comparisons << std::endl;
+        std::cout << "\tTime to process a range of " << argc - 1 << " elements: " 
+                << total_useconds << " us" << std::endl;
+    }
     return 0;
 }
 
@@ -95,4 +130,18 @@ long getMaxFJComparisons(int n) {
         F += floorLog;
     }
     return F;
+}
+
+void    printVint(std::vector<int> v1) {
+    for (std::vector<int>::iterator it = v1.begin(); it != v1.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+}
+
+void    printDint(std::deque<int> v1) {
+    for (std::deque<int>::iterator it = v1.begin(); it != v1.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
 }

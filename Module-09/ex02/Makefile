@@ -1,7 +1,7 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 
-SRC = main.cpp PmergeMe.cpp
+SRC = main.cpp PmergeMe.cpp PmergeMeVector.cpp PmergeMeDeque.cpp
 OBJ = $(SRC:.cpp=.o)
 DEP = $(OBJ:.o=.d)
 NAME = PmergeMe
