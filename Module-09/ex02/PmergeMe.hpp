@@ -37,6 +37,8 @@ class PmergeMeVector {
     
         std::vector<int> vdata;
     private:
+        unsigned int vsize;
+
         class SubGroup {
             public:
             static unsigned int &comparisons;

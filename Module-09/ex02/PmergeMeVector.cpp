@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 
 PmergeMeVector::PmergeMeVector(std::vector<int> inputData)
-: vdata(inputData) {}
+: vdata(inputData), vsize(vdata.size()) {}
 
 PmergeMeVector::~PmergeMeVector()
 {
@@ -9,7 +9,7 @@ PmergeMeVector::~PmergeMeVector()
 
 void PmergeMeVector::fjsort()
 {
-    if (vdata.size() < 2) {
+    if (vsize < 2) {
         return;
     }
     fordJohnsonSort(0);
@@ -29,6 +29,7 @@ std::string PmergeMeVector::toString() const
 
 std::vector< std::vector<int> > PmergeMeVector::groupVector(const std::vector<int> &other, unsigned int groupsize) {
     std::vector< std::vector<int> > temp;
+    temp.reserve(vsize % groupsize == 0 ? (vsize / groupsize) : (vsize / groupsize + 1));
     unsigned int counter = 0;
     std::vector<int>::const_iterator it = other.begin();
     while (it != other.end()) 
@@ -36,6 +37,7 @@ std::vector< std::vector<int> > PmergeMeVector::groupVector(const std::vector<in
         if (counter % groupsize == 0)
         {
             temp.push_back(std::vector<int>());
+            temp.back().reserve(groupsize);
         }
         (*(temp.rbegin())).push_back(*it);
         ++it;
@@ -126,7 +128,7 @@ void PmergeMeVector::fordJohnsonSort(unsigned int iteration)
     DEBUG_PRINT(debugss.str());
     debugss.str("");
 
-    if (groupsize * 2 > vdata.size()) {
+    if (groupsize * 2 > vsize) {
         debugss << "With group size " << groupsize << ", unable to make pairs\nBase case reached, returning.\n";
         debugss << "\n---------------------------------------------\n";
         DEBUG_PRINT(debugss.str());
@@ -180,6 +182,8 @@ void PmergeMeVector::fordJohnsonSort(unsigned int iteration)
     std::vector<SubGroup> mainchain;
     std::vector<SubGroup> pendchain;
 
+    mainchain.reserve(temp.size());
+    pendchain.reserve(temp.size() / 2 + 1);
     labelSubGroups(temp, mainchain, pendchain);
 
     debugss << "Main chain: \n";
