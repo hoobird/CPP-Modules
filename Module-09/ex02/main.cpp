@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
         std::cout << "\tTime to process a range of " << argc - 1 << " elements: " 
                 << total_useconds << " us" << std::endl;
         #else
-        std::cout << "Time to process a range of 5 elements with std::vector : " << total_useconds << " us" << std::endl;
+        std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector : " << total_useconds << " us" << std::endl;
         #endif
 
     }
@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
         std::cout << "\tTime to process a range of " << argc - 1 << " elements: " 
                 << total_useconds << " us" << std::endl;
         #else
-        std::cout << "Time to process a range of 5 elements with std::deque : " << total_useconds << " us" << std::endl;
+        std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque : " << total_useconds << " us" << std::endl;
         #endif
     }
 
