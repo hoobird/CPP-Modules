@@ -58,26 +58,26 @@ void PmergeMeList::labelSubGroups(std::list<std::list<int> > &temp, std::list<Su
 {
     if (temp.size() < 2)
         return;
-    mainchain.push_back(SubGroup("b1", temp.front()));
-    temp.pop_front();
-    mainchain.push_back(SubGroup("a1", temp.front()));
-    temp.pop_front();
 
-    unsigned int counter = 2;
-    while (!temp.empty()) {
+    unsigned int counter = 0;
+    for (std::list<std::list<int> >::const_iterator it = temp.begin(); it != temp.end(); ++it, ++counter) {
         std::stringstream ss;
         std::string tag;
-        if (counter % 2 == 0) {
+        if (counter == 0) {
+            tag = "b1";
+            mainchain.push_back(SubGroup(tag, *it));
+        } else if (counter == 1) {
+            tag = "a1";
+            mainchain.push_back(SubGroup(tag, *it));
+        } else if (counter % 2 == 0) {
             ss << "b" << counter / 2 + 1;
             tag = ss.str();
-            pendchain.push_back(SubGroup(tag, temp.front()));
+            pendchain.push_back(SubGroup(tag, *it));
         } else {
             ss << "a" << counter / 2 + 1;
             tag = ss.str();
-            mainchain.push_back(SubGroup(tag, temp.front()));
+            mainchain.push_back(SubGroup(tag, *it));
         }
-        counter++;
-        temp.pop_front();
     }
 }
 

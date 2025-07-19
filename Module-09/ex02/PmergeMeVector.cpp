@@ -65,27 +65,25 @@ void PmergeMeVector::pairAndSortGroups(std::vector< std::vector<int> > &temp, un
 
 void PmergeMeVector::labelSubGroups(std::vector<std::vector<int> > &temp, std::vector<SubGroup> &mainchain, std::vector<SubGroup> &pendchain)
 {
-     if (temp.size() < 2)
+    if (temp.size() < 2)
         return;
     mainchain.push_back(SubGroup("b1", temp[0]));
     mainchain.push_back(SubGroup("a1", temp[1]));
-    temp.erase(temp.begin(), temp.begin() + 2);
 
     unsigned int counter = 2;
-    while (!temp.empty()) {
+    for (size_t i = 2; i < temp.size(); ++i) {
         std::stringstream ss;
         std::string tag;
         if (counter % 2 == 0) {
             ss << "b" << counter / 2 + 1;
             tag = ss.str();
-            pendchain.push_back(SubGroup(tag, temp[0]));
+            pendchain.push_back(SubGroup(tag, temp[i]));
         } else {
             ss << "a" << counter / 2 + 1;
             tag = ss.str();
-            mainchain.push_back(SubGroup(tag, temp[0]));
+            mainchain.push_back(SubGroup(tag, temp[i]));
         }
         counter++;
-        temp.erase(temp.begin());
     }
 }
 
